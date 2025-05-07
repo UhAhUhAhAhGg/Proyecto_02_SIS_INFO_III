@@ -1,5 +1,5 @@
 ## PASOS PARA EJECUTAR EL REPOSITORIO: Proyecto_02_SIS_INFO_III
-
+## NOTA EN CASO DE EXISTIR CAMBIOS EN LA RAMA PRINCIPAL MAIN HACER PULL
 1. Clonar el proyecto:
 
    git clone https://github.com/UhAhUhAhAhGg/Proyecto_02_SIS_INFO_III.git
