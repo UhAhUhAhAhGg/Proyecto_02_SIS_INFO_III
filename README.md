@@ -21,7 +21,7 @@
    5. Crear su tabla. Ejecutando el contenido del archivo `usuariosdb.sql`
 
 
-- **NOTA: Antes de ejecutar el Backend Siempre Prender Apache y MySQL en XAMMP**
+- **NOTA: Antes de ejecutar el Backend Siempre Prender Apache y MySQL en XAMMP una vez creada las base y tablas respectivas**
 
   
 8. Ejecutar "Backend": Abrir terminal dentro del proyecto o interfaz de línea de comandos de su preferencia.
