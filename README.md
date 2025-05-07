@@ -5,7 +5,7 @@
    git clone https://github.com/UhAhUhAhAhGg/Proyecto_02_SIS_INFO_III.git
 
 3. Abrir el proyecto en Visual Studio o editor de código de su preferencia.
-4. Ejecutar "Frontend" y "Backend":
+4. Ejecutar "Frontend" y "Backend": Abrir terminal dentro del proyecto o interfaz de línea de comandos de su preferencia.
 - **Frontend:** Dirigirse a la terminal de la carpeta `Frontend`  
   ```
   cd Frontend
