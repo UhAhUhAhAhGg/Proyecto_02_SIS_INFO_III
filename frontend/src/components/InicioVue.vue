@@ -1,7 +1,7 @@
 <template>
-    <div><h1>Inicio u.u con Barrita / pq sino no da xD supongo que pq son configuraciones de vue</h1></div>
+
     <div>
-    <h1>Bienvenido 7n7</h1>
+    <h1>Página para colocar toda la información de que trata el proyecto</h1>
     <p>Selecciona una opción:</p>
     <button @click="irAHola">Ir a Hello</button>
     <button @click="irAUsuarios">Ir a Usuarios</button>
