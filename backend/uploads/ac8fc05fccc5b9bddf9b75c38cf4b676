@@ -1,0 +1,432 @@
+Animal_Type,Breed,Age,Gender,Weight,Symptom_1,Duration,Appetite_Loss,Vomiting,Diarrhea,Coughing,Labored_Breathing,Lameness,Skin_Lesions,Nasal_Discharge,Eye_Discharge,Body_Temperature,Heart_Rate,Disease_Prediction
+Cat,Ragdoll,6,Male,6.0,Appetite Loss,14,Yes,Yes,No,No,No,No,Yes,No,No,39.0,160,Feline Leukemia
+Cat,Maine Coon,6,Female,7.5,Appetite Loss,4,Yes,Yes,Yes,No,No,Yes,No,No,No,38.9,145,Feline Infectious Peritonitis
+Cow,Holstein,4,Female,580.0,Appetite Loss,7,Yes,No,Yes,No,No,No,No,No,No,39.4,82,Johnes Disease
+Cat,Persian,8,Male,4.6,Appetite Loss,2,No,Yes,No,No,No,No,Yes,No,Yes,39.0,140,Conjunctivitis
+Cat,British Shorthair,3,Male,5.5,Appetite Loss,4,Yes,No,No,Yes,Yes,No,No,No,Yes,38.7,145,Feline Upper Respiratory Infection
+Horse,Clydesdale,15,Male,600.0,Appetite Loss,10,No,No,Yes,Yes,No,No,Yes,Yes,No,39.8,70,Equine Pneumonia
+Cow,Guernsey,4,Male,590.0,Appetite Loss,5,Yes,No,No,Yes,No,No,Yes,No,No,39.3,84,Bovine Coccidiosis
+Cow,Simmental,8,Male,580.0,Appetite Loss,6,Yes,Yes,Yes,Yes,No,Yes,No,No,Yes,39.3,80,Bovine Johnes Disease
+Cat,Siamese,2,Female,4.5,Coughing,7,No,No,No,Yes,No,No,No,Yes,Yes,38.9,150,Upper Respiratory Infection
+Horse,Thoroughbred,6,Female,500.0,Coughing,10,Yes,No,No,Yes,Yes,No,No,Yes,No,39.8,85,Equine Influenza
+Horse,Clydesdale,10,Male,700.0,Coughing,14,Yes,No,No,Yes,Yes,No,No,Yes,No,40.2,85,Equine Influenza
+Dog,Poodle,2,Female,8.0,Coughing,4,Yes,No,No,Yes,No,No,No,Yes,No,39.1,125,Kennel Cough
+Cat,Russian Blue,2,Female,4.5,Coughing,5,No,No,No,Yes,No,No,No,Yes,Yes,38.8,150,Feline Herpesvirus
+Horse,Quarter Horse,9,Female,480.0,Coughing,6,Yes,No,No,Yes,Yes,No,No,No,No,39.9,85,Equine Rhinopneumonitis
+Dog,Dachshund,7,Male,5.5,Coughing,14,Yes,No,No,Yes,Yes,No,No,No,No,39.5,120,Chronic Bronchitis
+Cow,Angus,6,Male,600.0,Coughing,7,No,No,No,Yes,Yes,No,No,No,No,39.9,82,Bovine Respiratory Disease
+Dog,Poodle,8,Male,15.0,Coughing,7,Yes,No,Yes,No,Yes,No,No,No,Yes,39.3,126,Kennel Cough
+Dog,Border Collie,3,Female,17.0,Coughing,8,Yes,No,No,Yes,No,Yes,No,Yes,Yes,39.4,129,Bordetella Infection
+Horse,Thoroughbred,14,Male,520.0,Coughing,12,No,Yes,Yes,No,Yes,No,No,Yes,No,39.7,72,Equine Influenza
+Cat,Persian,8,Female,5.0,Coughing,4,Yes,No,Yes,No,Yes,No,Yes,No,No,38.9,147,Feline Viral Rhinotracheitis
+Dog,German Shepherd,6,Female,30.0,Coughing,6,Yes,No,Yes,No,Yes,No,No,No,Yes,39.4,125,Kennel Cough
+Cow,Holstein,7,Male,590.0,Coughing,4,No,No,No,Yes,Yes,No,Yes,No,No,39.9,80,Bovine Pneumonia
+Cat,Siberian,2,Male,5.5,Coughing,4,Yes,No,Yes,No,No,Yes,No,Yes,No,38.6,144,Feline Calicivirus
+Dog,Shih Tzu,4,Female,7.0,Coughing,6,Yes,No,Yes,No,Yes,Yes,No,No,No,39.3,133,Canine Flu
+Sheep,Merino,4,Male,75.0,Coughing,4,Yes,No,No,Yes,No,Yes,Yes,No,No,40.0,78,Pneumonia
+Cat,Siamese,6,Male,4.2,Coughing,4,Yes,No,No,Yes,No,Yes,Yes,No,Yes,38.7,140,Feline Calicivirus
+Cow,Angus,8,Male,580.0,Coughing,5,Yes,No,No,Yes,No,Yes,No,No,Yes,40.0,83,Bovine Respiratory Disease
+Sheep,Dorper,6,Male,65.0,Coughing,4,No,No,Yes,Yes,No,Yes,Yes,No,Yes,39.9,80,Pasteurellosis
+Cow,Jersey,6,Male,570.0,Coughing,5,Yes,No,Yes,No,Yes,No,No,Yes,Yes,39.4,81,Bovine Tuberculosis
+Pig,Berkshire,2,Male,115.0,Coughing,4,Yes,No,No,Yes,Yes,No,Yes,No,Yes,39.8,85,Actinobacillus Pleuropneumonia
+Dog,Beagle,6,Male,13.0,Coughing,4,Yes,No,No,Yes,Yes,Yes,No,Yes,No,39.4,127,Kennel Cough
+Cow,Holstein,7,Female,650.0,Coughing,5,Yes,No,No,Yes,Yes,No,No,Yes,No,39.4,79,Bovine Tuberculosis
+Cow,Angus,6,Male,550.0,Coughing,7,Yes,No,Yes,Yes,Yes,No,Yes,No,No,39.4,82,Bovine Respiratory Disease
+Pig,Duroc,3,Female,100.0,Coughing,4,Yes,No,Yes,No,Yes,Yes,No,No,Yes,39.5,88,Swine Influenza
+Pig,Landrace,5,Male,120.0,Coughing,6,Yes,Yes,No,No,Yes,No,Yes,Yes,No,39.2,85,Actinobacillus Pleuropneumonia
+Cat,Scottish Fold,4,Male,4.8,Coughing,5,Yes,No,Yes,No,No,Yes,No,Yes,Yes,38.8,147,Feline Chlamydia
+Cow,Jersey,5,Female,500.0,Coughing,5,Yes,Yes,Yes,No,Yes,No,No,Yes,Yes,39.5,81,Bovine Viral Diarrhea
+Cow,Holstein,5,Female,620.0,Coughing,7,Yes,No,Yes,Yes,No,Yes,Yes,No,Yes,39.3,82,Bovine Respiratory Syncytial Virus
+Sheep,Finnsheep,4,Male,70.0,Coughing,5,Yes,No,Yes,Yes,No,Yes,No,Yes,Yes,39.0,75,Scrapie
+Pig,Tamworth,3,Male,100.0,Coughing,4,Yes,Yes,No,Yes,Yes,No,Yes,No,No,39.6,85,Porcine Epidemic Diarrhea
+Cow,Guernsey,7,Male,590.0,Coughing,6,Yes,No,No,Yes,Yes,Yes,Yes,No,Yes,39.1,78,Bovine Tuberculosis
+Pig,Large White,6,Female,115.0,Coughing,7,Yes,No,Yes,Yes,Yes,No,Yes,No,No,39.7,83,Swine Influenza
+Cow,Aberdeen Angus,6,Female,620.0,Coughing,5,Yes,No,Yes,No,Yes,Yes,Yes,Yes,No,39.2,80,Bovine Respiratory Disease
+Sheep,Dorset,3,Male,75.0,Coughing,5,Yes,No,Yes,Yes,Yes,No,Yes,No,No,39.1,77,Foot and Mouth Disease
+Pig,Berkshire,4,Male,95.0,Coughing,3,Yes,No,No,Yes,Yes,Yes,Yes,Yes,No,39.2,88,Porcine Reproductive and Respiratory Syndrome
+Cat,Siamese,6,Male,5.5,Coughing,4,Yes,No,No,Yes,No,No,Yes,Yes,No,39.0,149,Feline Infectious Peritonitis
+Cow,Ayrshire,4,Male,630.0,Coughing,6,Yes,No,Yes,Yes,No,Yes,Yes,Yes,No,39.1,79,Bovine Tuberculosis
+Dog,Beagle,4,Female,15.0,Coughing,4,Yes,No,Yes,Yes,No,No,Yes,Yes,No,39.2,125,Canine Influenza
+Cow,Jersey,5,Male,560.0,Coughing,5,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.1,79,Bovine Tuberculosis
+Sheep,Suffolk,5,Female,90.0,Coughing,4,Yes,No,Yes,Yes,Yes,Yes,No,Yes,No,39.2,72,Foot and Mouth Disease
+Pig,Duroc,4,Female,105.0,Coughing,3,Yes,No,Yes,No,Yes,No,Yes,No,Yes,39.5,83,Porcine Respiratory Disease Complex
+Cow,Simmental,4,Male,650.0,Coughing,6,Yes,No,Yes,Yes,Yes,Yes,No,No,Yes,39.3,78,Bovine Respiratory Syncytial Virus
+Pig,Landrace,4,Male,100.0,Coughing,5,Yes,Yes,Yes,Yes,Yes,No,Yes,No,Yes,39.2,87,Porcine Epidemic Diarrhea
+Cow,Dexter,3,Male,450.0,Coughing,5,Yes,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.3,79,Bovine Viral Diarrhea
+Pig,Hampshire,3,Female,105.0,Coughing,5,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.2,86,Porcine Respiratory Disease Complex
+Dog,Golden Retriever,7,Male,30.0,Coughing,5,Yes,Yes,Yes,Yes,Yes,No,Yes,No,No,39.0,130,Canine Distemper
+Cow,Charolais,3,Male,700.0,Coughing,5,Yes,Yes,No,No,Yes,Yes,No,Yes,Yes,39.2,77,Bovine Tuberculosis
+Cat,Maine Coon,5,Male,8.5,Coughing,3,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.1,145,Feline Upper Respiratory Infection
+Cow,Holstein,4,Male,700.0,Coughing,5,Yes,Yes,No,No,Yes,No,Yes,No,Yes,39.3,77,Bovine Respiratory Disease
+Sheep,Southdown,6,Female,80.0,Coughing,5,Yes,No,Yes,Yes,No,Yes,Yes,No,No,39.3,74,Contagious Ecthyma
+Pig,Berkshire,5,Female,110.0,Coughing,5,Yes,No,Yes,Yes,Yes,No,Yes,No,Yes,39.2,85,Swine Influenza
+Cow,Guernsey,5,Female,450.0,Coughing,4,Yes,No,Yes,No,Yes,Yes,Yes,Yes,No,39.0,78,Bovine Parainfluenza
+Pig,Large White,4,Male,120.0,Coughing,6,Yes,No,Yes,Yes,Yes,Yes,No,Yes,No,39.1,86,Actinobacillus Pleuropneumonia
+Cow,Red Poll,4,Male,680.0,Coughing,6,Yes,Yes,No,No,Yes,No,Yes,Yes,Yes,39.4,77,Bovine Tuberculosis
+Sheep,Romney,5,Female,90.0,Coughing,4,Yes,No,Yes,Yes,No,Yes,Yes,Yes,No,39.1,75,Maedi-Visna
+Pig,Pietrain,4,Female,130.0,Coughing,6,Yes,Yes,No,Yes,No,Yes,No,Yes,Yes,39.2,88,Swine Erysipelas
+Dog,Beagle,5,Male,25.0,Coughing,5,Yes,Yes,No,No,Yes,Yes,Yes,No,Yes,39.2,120,Kennel Cough
+Cow,Jersey,6,Female,500.0,Coughing,5,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.2,75,Bovine Viral Diarrhea
+Sheep,Blackface,4,Male,95.0,Coughing,6,Yes,No,Yes,No,Yes,Yes,No,Yes,No,39.3,77,Blue Tongue Disease
+Pig,Landrace,6,Male,120.0,Coughing,5,Yes,No,Yes,Yes,No,No,Yes,Yes,No,39.1,95,Actinobacillus Pleuropneumonia
+Cow,Ayrshire,5,Male,720.0,Coughing,4,Yes,Yes,No,No,Yes,Yes,Yes,No,Yes,39.3,82,Bovine Tuberculosis
+Sheep,Suffolk,4,Male,85.0,Coughing,5,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.4,78,Contagious Abortion
+Pig,Duroc,3,Male,110.0,Coughing,5,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.2,100,Swine Dysentery
+Cat,Abyssinian,5,Male,4.5,Coughing,3,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.0,140,Feline Respiratory Disease Complex
+Cow,Belted Galloway,4,Female,650.0,Coughing,4,Yes,Yes,Yes,No,Yes,Yes,Yes,No,Yes,39.4,75,Bovine Tuberculosis
+Sheep,Cheviot,3,Female,75.0,Coughing,5,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.3,77,Foot-and-Mouth Disease
+Pig,Large White,5,Female,130.0,Coughing,6,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.0,90,Swine Flu
+Cat,Maine Coon,6,Female,10.0,Coughing,4,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,39.1,145,Feline Leukemia
+Dog,Rottweiler,7,Male,35.0,Coughing,4,Yes,No,No,Yes,Yes,Yes,Yes,Yes,Yes,39.3,110,Kennel Cough
+Cow,Holstein,8,Male,650.0,Coughing,4,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.5,80,Bovine Respiratory Disease Complex
+Sheep,Rambouillet,5,Female,90.0,Coughing,5,Yes,Yes,No,Yes,Yes,Yes,No,No,Yes,39.3,78,Scrapie
+Pig,Berkshire,4,Female,120.0,Coughing,6,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.2,100,Swine Fever
+Cow,Jersey,6,Female,550.0,Coughing,5,Yes,No,Yes,No,Yes,Yes,No,Yes,No,39.6,70,Johnes Disease
+Sheep,Suffolk,4,Male,110.0,Coughing,6,Yes,Yes,No,Yes,No,Yes,No,Yes,Yes,39.3,77,Bluetongue
+Pig,Tamworth,5,Male,150.0,Coughing,5,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,No,39.3,92,Actinobacillus Pleuropneumonia
+Cat,Siberian,5,Male,11.0,Coughing,4,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.2,140,Feline Leukemia Virus
+Cow,Ayrshire,7,Female,550.0,Coughing,6,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.4,75,Bovine Johnes Disease
+Sheep,Dorper,4,Male,95.0,Coughing,6,Yes,Yes,No,Yes,No,Yes,Yes,No,No,39.3,78,Contagious Ecthyma
+Pig,Landrace,6,Female,130.0,Coughing,5,Yes,Yes,No,Yes,Yes,No,Yes,Yes,No,39.2,110,Swine Influenza
+Cat,Burmese,4,Female,7.5,Coughing,5,Yes,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.0,140,Feline Chlamydiosis
+Cow,Guernsey,5,Female,600.0,Coughing,5,Yes,No,No,Yes,Yes,Yes,No,Yes,Yes,39.6,85,Bovine Tuberculosis
+Dog,Poodle,3,Female,28.0,Coughing,5,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.1,120,Kennel Cough
+Cow,Charolais,8,Male,700.0,Coughing,5,Yes,Yes,No,No,Yes,Yes,Yes,No,Yes,39.2,75,Bovine Respiratory Disease
+Sheep,Blackface,6,Male,95.0,Coughing,5,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,39.4,80,Foot-and-Mouth Disease
+Pig,Large White,3,Female,120.0,Coughing,4,Yes,Yes,No,Yes,Yes,No,Yes,Yes,No,39.1,95,Swine Influenza
+Cat,Siamese,3,Female,7.0,Coughing,3,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,39.0,140,Feline Infectious Peritonitis
+Cow,Simmental,7,Female,650.0,Coughing,5,Yes,No,Yes,No,Yes,No,Yes,Yes,Yes,39.3,75,Bovine Tuberculosis
+Sheep,Texel,5,Male,110.0,Coughing,6,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,No,39.4,70,Scrapie
+Pig,Landrace,5,Male,130.0,Coughing,4,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.2,90,Actinobacillus Pleuropneumonia
+Cow,Jersey,6,Male,550.0,Coughing,6,Yes,Yes,No,Yes,Yes,Yes,No,No,Yes,39.5,70,Bovine Johnes Disease
+Sheep,Rambouillet,6,Female,90.0,Coughing,6,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,39.6,80,Bluetongue
+Pig,Tamworth,4,Female,150.0,Coughing,5,Yes,No,Yes,Yes,Yes,Yes,No,Yes,Yes,39.4,85,Swine Erysipelas
+Dog,Bulldog,5,Female,22.0,Coughing,5,Yes,Yes,Yes,No,Yes,Yes,Yes,No,Yes,39.3,120,Canine Cough
+Cow,Holstein,8,Female,750.0,Coughing,7,Yes,Yes,Yes,Yes,No,Yes,No,Yes,Yes,39.5,85,Bovine Respiratory Disease Complex
+Sheep,Cheviot,4,Male,85.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,39.3,95,Blue Tongue Virus
+Pig,Pietrain,3,Female,135.0,Coughing,5,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.4,95,African Swine Fever
+Cat,Abyssinian,2,Female,6.0,Coughing,4,Yes,Yes,No,Yes,No,Yes,No,Yes,Yes,39.1,140,Feline Infectious Peritonitis
+Cow,Angus,5,Female,650.0,Coughing,5,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,39.3,75,Bovine Tuberculosis
+Sheep,Suffolk,6,Female,120.0,Coughing,5,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,39.5,80,Scrapie Disease
+Pig,Landrace,6,Male,140.0,Coughing,6,Yes,Yes,No,No,Yes,Yes,Yes,Yes,Yes,39.5,90,Swine Influenza
+Cat,Ragdoll,5,Male,8.0,Coughing,4,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,39.2,145,Feline Leukemia Virus
+Cow,Limousin,6,Male,650.0,Coughing,5,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.5,80,Bovine Respiratory Disease Complex
+Sheep,Merino,7,Male,90.0,Coughing,6,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,39.4,90,Bluetongue
+Pig,Berkshire,4,Female,120.0,Coughing,5,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,39.4,85,Swine Erysipelas
+Cat,Bengal,4,Male,7.0,Coughing,5,Yes,Yes,No,Yes,No,Yes,No,Yes,Yes,39.1,135,Feline Immunodeficiency Virus
+Cow,Jersey,3,Female,600.0,Coughing,5,Yes,No,Yes,Yes,Yes,No,No,Yes,Yes,39.4,95,Bovine Respiratory Disease
+Sheep,Dorset,6,Male,120.0,Coughing,7,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,39.5,85,Scrapie
+Pig,Tamworth,3,Male,160.0,Coughing,6,Yes,Yes,Yes,Yes,Yes,No,Yes,No,Yes,39.5,105,Swine Influenza
+Cow,Angus,4,Female,650.0,Coughing,6,Yes,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.5,90,Bovine Tuberculosis
+Sheep,Suffolk,7,Male,130.0,Coughing,6,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,No,39.3,85,Bluetongue Virus
+Pig,Berkshire,5,Male,140.0,Coughing,5,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.5,100,African Swine Fever
+Cat,Maine Coon,6,Male,9.0,Coughing,5,Yes,Yes,No,Yes,Yes,Yes,No,Yes,Yes,39.4,140,Feline Herpesvirus
+Cow,Charolais,8,Female,750.0,Coughing,6,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.3,80,Bovine Respiratory Disease
+Sheep,Hampshire,6,Male,125.0,Coughing,7,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,39.6,85,Scrapie Disease
+Pig,Large White,6,Female,130.0,Coughing,6,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.4,95,Swine Fever
+Cat,Persian,4,Female,7.0,Coughing,5,Yes,Yes,Yes,No,Yes,No,Yes,No,Yes,39.0,130,Feline Asthma
+Cow,Holstein,3,Male,700.0,Coughing,6,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.2,90,Bovine Mastitis
+Cow,Guernsey,3,Male,580.0,Coughing,4,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.4,85,Bovine Respiratory Disease
+Sheep,Dorset,4,Male,125.0,Coughing,5,Yes,Yes,No,Yes,Yes,No,No,Yes,Yes,39.3,80,Scrapie
+Pig,Landrace,4,Male,130.0,Coughing,6,Yes,Yes,Yes,Yes,No,Yes,No,No,Yes,39.6,100,Swine Flu
+Sheep,Cheviot,3,Female,110.0,Coughing,4,Yes,Yes,No,Yes,Yes,No,No,Yes,No,39.4,80,Bluetongue
+Pig,Yorkshire,2,Female,120.0,Coughing,4,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,39.5,105,Porcine Epidemic Diarrhea Virus
+Cow,Ayrshire,3,Female,700.0,Coughing,5,Yes,Yes,Yes,Yes,Yes,No,No,Yes,Yes,39.4,90,Bovine Respiratory Disease
+Pig,Chester White,3,Male,150.0,Coughing,5,Yes,No,Yes,Yes,No,Yes,Yes,Yes,Yes,39.7,105,Swine Influenza
+Cat,Maine Coon,5,Male,8.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,No,Yes,Yes,39.0,135,Feline Panleukopenia Virus
+Cow,Jersey,2,Male,550.0,Coughing,4,Yes,Yes,Yes,No,Yes,Yes,Yes,No,Yes,39.2,95,Bovine Mastitis
+Cow,Simmental,4,Female,700.0,Coughing,6,Yes,Yes,Yes,Yes,Yes,No,No,Yes,Yes,39.4,100,Bovine Respiratory Disease
+Sheep,Suffolk,3,Male,110.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,No,Yes,No,39.3,80,Bluetongue
+Pig,Tamworth,3,Male,130.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,No,No,Yes,39.6,105,Swine Influenza
+Cow,Dexter,2,Male,500.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,No,No,Yes,39.4,95,Bovine Tuberculosis
+Sheep,Cheviot,4,Female,120.0,Coughing,6,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.4,85,Scrapie
+Pig,Large White,2,Female,120.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.6,110,Porcine Circovirus Disease
+Pig,Berkshire,5,Male,145.0,Coughing,4,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,39.7,110,Swine Fever
+Sheep,Dorset,5,Male,150.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,No,No,Yes,39.5,90,Scrapie
+Sheep,Southdown,6,Male,130.0,Coughing,5,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.3,80,Foot-and-Mouth Disease
+Dog,Golden Retriever,5,Male,35.0,Coughing,4,Yes,Yes,No,Yes,No,No,No,Yes,No,39.2,110,Canine Parvovirus
+Cat,Persian,3,Female,5.0,Coughing,4,Yes,Yes,No,Yes,No,No,No,Yes,No,39.1,110,Feline Calicivirus
+Cat,Siamese,2,Female,4.5,Coughing,7,No,No,No,Yes,No,No,No,Yes,Yes,38.9,150,Upper Respiratory Infection
+Horse,Thoroughbred,6,Female,500.0,Coughing,10,Yes,No,No,Yes,Yes,No,No,Yes,No,39.8,85,Equine Influenza
+Cow,Angus,3,Female,590.0,Decreased Milk Yield,7,Yes,No,No,No,No,No,No,No,No,39.5,70,Mastitis
+Dog,Beagle,1,Male,10.0,Diarrhea,2,Yes,Yes,Yes,No,No,No,No,No,No,39.2,130,Gastroenteritis
+Cow,Jersey,3,Male,620.0,Diarrhea,8,Yes,No,Yes,No,No,No,No,No,No,39.7,79,Salmonellosis
+Cow,Limousin,2,Male,550.0,Diarrhea,4,Yes,No,No,Yes,Yes,No,Yes,No,No,39.5,85,Cryptosporidiosis
+Cow,Shorthorn,5,Male,600.0,Diarrhea,5,Yes,No,No,Yes,No,Yes,No,No,Yes,39.4,84,Salmonellosis
+Cow,Brown Swiss,3,Female,580.0,Diarrhea,5,Yes,Yes,No,No,No,Yes,No,No,Yes,39.3,85,Coccidiosis
+Goat,Boer,5,Female,68.0,Diarrhea,6,Yes,No,Yes,No,No,Yes,No,No,Yes,39.3,82,Coccidiosis
+Rabbit,Mini Rex,2,Male,1.6,Diarrhea,3,No,Yes,No,Yes,No,Yes,No,No,Yes,38.5,155,Enteritis
+Cow,Hereford,7,Female,590.0,Diarrhea,6,Yes,Yes,No,No,Yes,No,No,Yes,No,39.3,84,Bovine Johnes Disease
+Goat,Nubian,3,Female,70.0,Diarrhea,5,Yes,Yes,No,No,No,Yes,No,Yes,Yes,39.4,81,Giardiasis
+Goat,Toggenburg,7,Female,65.0,Diarrhea,5,Yes,Yes,No,Yes,No,Yes,No,Yes,No,39.3,80,Coccidiosis
+Goat,LaMancha,5,Female,72.0,Diarrhea,7,Yes,No,Yes,No,No,Yes,No,Yes,No,39.2,82,Gastrointestinal Infection
+Dog,Beagle,1,Male,10.0,Diarrhea,2,Yes,Yes,Yes,No,No,No,No,No,No,39.2,130,Gastroenteritis
+Cat,Sphynx,4,Female,3.2,Eye Discharge,7,No,No,No,Yes,Yes,No,No,Yes,Yes,39.3,150,Feline Upper Respiratory Infection
+Cat,Ragdoll,4,Female,5.0,Eye Discharge,6,Yes,No,No,Yes,No,Yes,Yes,No,No,38.6,148,Feline Calicivirus
+Cat,Manx,4,Female,3.3,Eye Discharge,6,Yes,No,No,Yes,No,Yes,Yes,No,No,38.5,138,Feline Herpesvirus
+Cat,Abyssinian,4,Male,4.5,Eye Discharge,5,Yes,No,No,Yes,Yes,No,No,Yes,No,38.8,140,Feline Calicivirus
+Cat,Burmese,8,Female,4.5,Eye Discharge,6,Yes,No,Yes,Yes,No,Yes,No,No,Yes,38.6,139,Feline Viral Rhinotracheitis
+Cat,Russian Blue,5,Female,4.7,Eye Discharge,5,Yes,Yes,No,No,No,Yes,No,Yes,Yes,38.6,145,Feline Respiratory Infection
+Cat,Persian,5,Male,5.0,Eye Discharge,4,Yes,Yes,No,Yes,No,Yes,Yes,No,Yes,38.9,148,Feline Herpesvirus
+Dog,Labrador,4,Male,25.0,Fever,3,Yes,Yes,No,No,No,No,No,No,No,39.5,120,Parvovirus
+Cow,Holstein,3,Female,600.0,Fever,5,Yes,No,No,Yes,Yes,No,No,Yes,No,40.1,90,Foot and Mouth Disease
+Cow,Hereford,5,Male,650.0,Fever,5,Yes,No,No,No,No,No,No,No,No,39.7,80,Bovine Respiratory Disease
+Cow,Angus,5,Female,700.0,Fever,7,Yes,No,No,Yes,Yes,No,No,Yes,No,39.8,80,Bovine Respiratory Disease
+Dog,Beagle,2,Female,9.0,Fever,3,Yes,Yes,No,No,No,Yes,Yes,No,No,39.2,132,Canine Distemper
+Cow,Brahman,7,Female,620.0,Fever,5,Yes,No,Yes,Yes,No,Yes,No,No,No,39.6,81,Mastitis
+Cow,Red Angus,5,Female,620.0,Fever,4,Yes,No,Yes,No,Yes,No,Yes,Yes,No,39.8,83,Bovine Leukemia Virus
+Cow,Jersey,6,Female,600.0,Fever,5,Yes,No,No,Yes,No,Yes,No,No,No,39.4,86,Bovine Respiratory Syncytial Virus
+Horse,Arabian,13,Male,490.0,Fever,8,No,No,No,Yes,Yes,No,No,Yes,No,39.6,78,Equine Influenza
+Cow,Brahman,3,Female,570.0,Fever,4,Yes,No,No,Yes,No,Yes,No,No,Yes,39.8,86,Respiratory Syncytial Virus
+Horse,Clydesdale,12,Female,600.0,Fever,6,No,No,Yes,No,Yes,Yes,No,Yes,No,39.6,77,Equine Laminitis
+Goat,Alpine,4,Male,72.0,Fever,7,No,Yes,No,No,Yes,Yes,No,No,Yes,39.7,83,Caprine Arthritis Encephalitis
+Pig,Poland China,3,Male,110.0,Fever,6,No,Yes,Yes,No,Yes,No,Yes,No,Yes,39.8,87,Actinobacillus Pleuropneumonia
+Goat,Boer,3,Female,70.0,Fever,5,Yes,No,Yes,No,Yes,Yes,No,Yes,Yes,39.5,80,Caprine Pleuropneumonia
+Dog,Labrador,4,Male,25.0,Fever,3,Yes,Yes,No,No,No,No,No,No,No,39.5,120,Parvovirus
+Cow,Holstein,3,Female,600.0,Fever,5,Yes,No,No,Yes,Yes,No,No,Yes,No,40.1,90,Foot and Mouth Disease
+Dog,Bulldog,5,Male,23.0,Labored Breathing,6,Yes,No,No,Yes,Yes,No,No,Yes,No,40.0,115,Canine Distemper
+Cow,Brown Swiss,9,Male,600.0,Labored Breathing,6,Yes,No,Yes,Yes,No,Yes,No,No,Yes,39.6,80,Bovine Respiratory Disease
+Dog,Bulldog,5,Male,23.0,Labored Breathing,6,Yes,No,No,Yes,Yes,No,No,Yes,No,40.0,115,Canine Distemper
+Dog,German Shepherd,3,Female,30.0,Lameness,7,Yes,No,No,No,No,Yes,Yes,No,No,39.3,110,Lyme Disease
+Horse,Arabian,8,Female,490.0,Lameness,7,Yes,No,No,Yes,No,Yes,No,Yes,No,39.9,75,Strangles
+Dog,Siberian Husky,6,Male,28.0,Lameness,8,Yes,No,No,No,No,Yes,Yes,No,No,39.3,120,Tick-Borne Disease
+Dog,Golden Retriever,4,Male,30.0,Lameness,10,Yes,No,No,No,No,Yes,No,No,No,39.5,110,Arthritis
+Horse,Appaloosa,6,Female,520.0,Lameness,5,No,No,No,No,No,Yes,Yes,No,No,39.8,76,Equine Piroplasmosis
+Horse,Arabian,10,Female,450.0,Lameness,8,No,No,No,Yes,Yes,No,No,No,No,39.4,75,Equine Arthritis
+Horse,Quarter Horse,12,Male,500.0,Lameness,5,No,No,No,Yes,No,Yes,No,No,No,39.7,78,Equine Infectious Anemia
+Horse,Morgan,11,Female,520.0,Lameness,7,No,No,Yes,Yes,No,Yes,No,Yes,No,39.7,77,Laminitis
+Horse,Standardbred,7,Male,540.0,Lameness,6,No,No,No,Yes,No,Yes,Yes,No,No,39.6,76,Degenerative Joint Disease
+Horse,Appaloosa,10,Female,510.0,Lameness,9,No,No,Yes,Yes,No,Yes,No,No,No,39.8,74,Equine Laminitis
+Horse,Welsh Pony,10,Male,450.0,Lameness,9,No,No,Yes,Yes,Yes,No,No,Yes,No,39.8,76,Equine Arthritis
+Horse,Thoroughbred,15,Male,480.0,Lameness,7,No,Yes,No,No,Yes,Yes,No,Yes,No,39.7,75,Equine Arthritis
+Horse,Paint,14,Male,500.0,Lameness,10,No,Yes,No,Yes,Yes,No,No,Yes,No,39.5,76,Equine Osteoarthritis
+Horse,Arabian,9,Female,460.0,Lameness,6,No,Yes,No,No,Yes,Yes,No,Yes,Yes,39.6,78,Equine Lyme Disease
+Horse,Belgian,13,Female,650.0,Lameness,8,No,Yes,No,Yes,Yes,No,No,No,Yes,39.5,74,Equine Infectious Anemia
+Horse,Shetland Pony,11,Male,300.0,Lameness,7,Yes,Yes,No,Yes,No,Yes,No,Yes,No,39.6,80,Equine Osteoarthritis
+Horse,Thoroughbred,7,Female,480.0,Lameness,6,No,Yes,Yes,No,Yes,Yes,No,Yes,No,39.6,75,Equine Influenza
+Sheep,Texel,4,Female,85.0,Lameness,5,Yes,No,No,Yes,No,No,Yes,Yes,No,39.3,76,Blue Tongue Virus
+Horse,Pinto,9,Male,530.0,Lameness,7,No,Yes,No,Yes,Yes,No,No,Yes,No,39.7,77,Equine Infectious Anemia
+Horse,Mustang,12,Male,550.0,Lameness,5,No,Yes,Yes,No,Yes,No,Yes,No,Yes,39.6,80,Equine Laminitis
+Horse,Arabian,6,Female,500.0,Lameness,6,No,Yes,Yes,Yes,No,No,Yes,Yes,No,39.4,79,Equine West Nile Virus
+Horse,Clydesdale,9,Male,850.0,Lameness,6,No,Yes,Yes,No,Yes,No,Yes,Yes,No,39.2,79,Equine Rhinopneumonitis
+Horse,Shetland Pony,8,Female,300.0,Lameness,5,Yes,Yes,No,Yes,No,Yes,Yes,No,No,39.5,76,Equine Herpesvirus
+Horse,Welsh Pony,5,Female,400.0,Lameness,4,No,Yes,Yes,No,Yes,No,Yes,Yes,No,39.4,78,Equine Influenza
+Horse,Thoroughbred,8,Female,550.0,Lameness,5,Yes,No,Yes,No,Yes,Yes,No,Yes,Yes,39.2,77,Equine Herpesvirus
+Horse,Arabian,7,Female,500.0,Lameness,6,No,Yes,Yes,Yes,No,Yes,Yes,No,No,39.3,85,Equine Protozoal Myeloencephalitis
+Horse,Mustang,8,Male,550.0,Lameness,7,No,Yes,Yes,Yes,Yes,No,No,Yes,No,39.1,87,Equine Influenza
+Horse,Tennessee Walking Horse,6,Female,600.0,Lameness,6,No,Yes,Yes,Yes,No,No,Yes,Yes,Yes,39.4,82,Equine Rhinopneumonitis
+Horse,Standardbred,6,Male,650.0,Lameness,6,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.4,80,Equine Influenza
+Horse,Clydesdale,7,Female,850.0,Lameness,6,Yes,No,Yes,Yes,Yes,No,Yes,No,Yes,39.2,82,Equine Herpesvirus
+Horse,Andalusian,8,Male,550.0,Lameness,7,Yes,No,Yes,Yes,No,Yes,Yes,No,Yes,39.4,88,Equine Encephalomyelitis
+Horse,Thoroughbred,6,Female,650.0,Lameness,6,Yes,No,Yes,No,Yes,No,Yes,Yes,No,39.3,84,Equine Influenza Virus
+Horse,Appaloosa,9,Male,550.0,Lameness,7,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.4,80,Equine Infectious Anemia
+Horse,Clydesdale,7,Female,800.0,Lameness,6,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,39.5,85,Equine Leptospirosis
+Horse,Morgan,5,Male,550.0,Lameness,6,Yes,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.2,80,Equine Herpesvirus
+Horse,Thoroughbred,6,Male,550.0,Lameness,5,Yes,No,No,Yes,Yes,Yes,Yes,Yes,Yes,39.5,78,Equine Influenza
+Horse,Clydesdale,10,Female,750.0,Lameness,6,Yes,Yes,Yes,No,No,Yes,Yes,Yes,Yes,39.4,90,Equine Encephalomyelitis
+Horse,Arabian,7,Male,450.0,Lameness,6,Yes,Yes,Yes,No,Yes,No,Yes,Yes,Yes,39.4,85,Equine Protozoal Myeloencephalitis
+Horse,Pinto,6,Male,600.0,Lameness,5,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.5,88,Equine Influenza
+Horse,Appaloosa,8,Male,700.0,Lameness,7,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Yes,39.3,82,West Nile Virus
+Horse,Thoroughbred,5,Female,550.0,Lameness,6,Yes,Yes,Yes,Yes,No,No,Yes,Yes,Yes,39.5,100,Equine Influenza
+Horse,Clydesdale,8,Male,800.0,Lameness,6,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,39.6,85,Equine Encephalomyelitis
+Horse,Arabian,6,Male,500.0,Lameness,6,Yes,No,Yes,No,Yes,Yes,No,Yes,No,39.3,85,Equine Protozoal Myeloencephalitis
+Horse,Quarter Horse,7,Male,550.0,Lameness,6,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.4,110,Equine Infectious Anemia
+Horse,Morgan,9,Male,600.0,Lameness,6,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,39.5,80,West Nile Virus
+Horse,Clydesdale,7,Male,700.0,Lameness,6,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,39.6,85,Equine Encephalitis
+Horse,Thoroughbred,5,Male,550.0,Lameness,6,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.5,110,Equine Infectious Anemia
+Horse,Clydesdale,6,Male,700.0,Lameness,7,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,39.6,115,Equine Herpesvirus
+Horse,Arabian,7,Female,550.0,Lameness,7,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,39.7,100,Equine Infectious Anemia
+Horse,Percheron,5,Male,680.0,Lameness,5,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,39.4,105,Equine Laminitis
+Horse,Morgan,4,Male,650.0,Lameness,6,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,39.6,120,Equine Herpesvirus
+Horse,Arabian,6,Female,650.0,Lameness,5,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,39.5,110,Equine Metabolic Syndrome
+Horse,Arabian,5,Male,450.0,Lameness,7,Yes,No,No,Yes,Yes,Yes,No,Yes,No,39.4,110,Equine Infectious Anemia
+Horse,Clydesdale,6,Male,700.0,Lameness,7,Yes,Yes,No,Yes,Yes,Yes,No,Yes,No,39.4,125,Equine Herpesvirus
+Dog,German Shepherd,3,Female,30.0,Lameness,7,Yes,No,No,No,No,Yes,Yes,No,No,39.3,110,Lyme Disease
+Cat,Persian,5,Male,3.8,Lethargy,14,Yes,No,No,No,No,No,Yes,No,No,38.7,160,Fungal Infection
+Cow,Jersey,4,Female,580.0,Lethargy,8,Yes,No,No,No,No,No,No,No,No,39.6,70,Mastitis
+Cat,Siamese,3,Female,5.0,Lethargy,5,Yes,Yes,No,No,No,No,Yes,No,No,39.0,130,Panleukopenia
+Dog,Poodle,2,Female,12.0,Lethargy,4,Yes,Yes,No,Yes,No,No,No,No,No,39.4,115,Kennel Cough
+Dog,Chihuahua,4,Female,3.5,Lethargy,2,Yes,Yes,Yes,Yes,No,No,No,No,No,39.1,130,Canine Parvovirus
+Cat,British Shorthair,5,Female,4.8,Lethargy,7,No,No,No,Yes,Yes,No,No,Yes,Yes,39.0,150,Upper Respiratory Infection
+Horse,Arabian,7,Male,450.0,Lethargy,5,Yes,No,No,Yes,Yes,No,No,No,No,39.7,90,Equine Influenza
+Cat,Bengal,3,Male,5.5,Lethargy,3,Yes,Yes,Yes,No,No,No,No,No,No,39.3,140,Panleukopenia
+Cow,Hereford,3,Female,650.0,Lethargy,8,Yes,No,No,Yes,No,No,No,No,No,39.6,75,Mastitis
+Dog,German Shepherd,5,Male,30.0,Lethargy,6,Yes,No,No,Yes,Yes,No,No,No,No,39.6,125,Heartworm Disease
+Dog,Golden Retriever,4,Female,28.0,Lethargy,5,Yes,No,Yes,Yes,No,Yes,No,No,No,39.2,130,Parvovirus
+Cow,Hereford,3,Female,570.0,Lethargy,6,Yes,No,No,No,No,Yes,No,No,No,39.1,80,Bovine Viral Diarrhea
+Dog,Husky,9,Male,25.0,Lethargy,4,Yes,Yes,No,Yes,Yes,No,No,No,No,39.1,124,Canine Parvovirus
+Horse,Shire,10,Female,680.0,Lethargy,10,No,No,Yes,Yes,No,Yes,No,No,No,39.9,74,Equine Leptospirosis
+Cat,Maine Coon,9,Male,6.5,Lethargy,8,Yes,Yes,Yes,No,No,No,Yes,Yes,No,39.0,140,Feline Renal Disease
+Dog,Labrador Retriever,11,Male,35.0,Lethargy,7,Yes,No,No,Yes,No,Yes,No,Yes,No,39.3,118,Canine Distemper
+Cat,Bengal,3,Female,4.2,Lethargy,6,Yes,No,Yes,Yes,No,Yes,No,No,No,39.1,145,Feline Panleukopenia
+Cat,Bombay,6,Male,4.0,Lethargy,5,Yes,No,No,Yes,Yes,No,Yes,No,No,38.9,149,Hyperthyroidism
+Dog,Akita,6,Male,35.0,Lethargy,6,Yes,No,Yes,No,Yes,Yes,No,No,Yes,39.5,130,Canine Hepatitis
+Dog,Dachshund,4,Female,9.0,Lethargy,3,Yes,No,Yes,No,Yes,Yes,No,No,No,39.0,132,Parvovirus
+Rabbit,Flemish Giant,5,Female,6.8,Lethargy,5,Yes,No,Yes,No,Yes,Yes,No,No,Yes,39.0,150,Gastrointestinal Stasis
+Dog,Poodle,7,Female,15.0,Lethargy,4,Yes,No,Yes,No,No,Yes,No,Yes,No,39.1,125,Canine Parvovirus
+Dog,Shih Tzu,8,Female,8.0,Lethargy,5,Yes,No,Yes,Yes,No,No,No,No,Yes,39.0,130,Canine Hepatitis
+Sheep,Lincoln,8,Male,95.0,Lethargy,6,No,Yes,No,Yes,Yes,No,Yes,No,Yes,39.9,75,Footrot
+Dog,Rottweiler,5,Female,42.0,Lethargy,4,Yes,Yes,No,Yes,No,Yes,Yes,No,No,39.2,120,Canine Parvovirus
+Cow,Charolais,5,Female,620.0,Lethargy,4,Yes,Yes,Yes,No,Yes,No,No,Yes,Yes,39.6,81,Bovine Tuberculosis
+Dog,Pit Bull,4,Female,35.0,Lethargy,3,Yes,Yes,No,Yes,No,Yes,No,No,No,39.0,125,Leptospirosis
+Sheep,Border Leicester,5,Male,90.0,Lethargy,5,Yes,Yes,No,Yes,No,Yes,No,Yes,Yes,39.7,74,Chlamydia in Sheep
+Dog,German Shepherd,4,Female,45.0,Lethargy,5,Yes,No,Yes,Yes,No,Yes,Yes,No,No,39.4,120,Canine Parvovirus
+Cat,Maine Coon,3,Male,7.5,Lethargy,4,Yes,Yes,No,Yes,Yes,Yes,No,Yes,No,39.1,148,Feline Infectious Peritonitis
+Dog,Poodle,6,Male,25.0,Lethargy,5,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.3,110,Canine Distemper
+Dog,Golden Retriever,7,Male,33.0,Lethargy,5,Yes,Yes,Yes,No,Yes,Yes,No,No,Yes,39.2,118,Canine Leptospirosis
+Dog,Bulldog,5,Female,18.0,Lethargy,5,Yes,No,No,Yes,Yes,Yes,No,Yes,No,39.3,115,Kennel Cough
+Dog,Chihuahua,3,Male,6.0,Lethargy,2,Yes,Yes,No,Yes,Yes,No,Yes,Yes,No,39.0,118,Canine Parvovirus
+Dog,Rottweiler,5,Female,40.0,Lethargy,4,Yes,No,Yes,Yes,Yes,Yes,No,Yes,No,39.3,122,Canine Distemper
+Dog,German Shepherd,4,Male,32.0,Lethargy,3,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,39.1,130,Canine Hepatitis
+Dog,Bulldog,3,Female,25.0,Lethargy,4,Yes,No,Yes,Yes,Yes,Yes,Yes,No,Yes,39.2,125,Canine Leptospirosis
+Dog,Chihuahua,4,Female,5.0,Lethargy,3,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,39.1,110,Canine Parvovirus
+Dog,Boxer,6,Female,30.0,Lethargy,4,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.1,115,Canine Leptospirosis
+Dog,Yorkshire Terrier,4,Male,8.0,Lethargy,3,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.2,100,Canine Heartworm Disease
+Dog,Beagle,4,Female,25.0,Lethargy,4,Yes,Yes,No,Yes,Yes,Yes,No,Yes,Yes,39.2,120,Distemper
+Dog,Chihuahua,3,Male,6.0,Lethargy,5,Yes,No,No,Yes,Yes,Yes,Yes,Yes,No,39.3,135,Parvovirus
+Dog,Beagle,4,Male,20.0,Lethargy,4,Yes,No,Yes,Yes,No,Yes,Yes,Yes,Yes,39.2,130,Canine Distemper
+Dog,Dachshund,3,Female,12.0,Lethargy,4,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,39.0,115,Canine Parvovirus
+Dog,Shih Tzu,4,Male,8.0,Lethargy,4,Yes,Yes,Yes,Yes,No,No,Yes,No,Yes,39.2,115,Parvovirus
+Dog,Cocker Spaniel,2,Female,10.0,Lethargy,3,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Yes,39.0,125,Distemper
+Dog,Rottweiler,3,Female,30.0,Lethargy,5,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,39.2,120,Leptospirosis
+Dog,Chihuahua,2,Male,6.0,Lethargy,3,Yes,Yes,Yes,No,No,Yes,Yes,No,Yes,39.3,130,Canine Distemper
+Dog,Beagle,2,Male,10.0,Lethargy,4,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.4,120,Canine Leptospirosis
+Dog,Boxer,3,Female,30.0,Lethargy,4,Yes,Yes,Yes,Yes,Yes,No,Yes,No,Yes,39.3,120,Canine Infectious Hepatitis
+Cat,Persian,5,Male,3.8,Lethargy,14,Yes,No,No,No,No,No,Yes,No,No,38.7,160,Fungal Infection
+Cow,Jersey,4,Female,580.0,Lethargy,8,Yes,No,No,No,No,No,No,No,No,39.6,70,Mastitis
+Cow,Simmental,8,Female,630.0,Loss of Appetite,7,No,Yes,No,No,Yes,Yes,Yes,No,No,39.5,83,Johnes Disease
+Cow,Hereford,7,Female,580.0,Loss of Appetite,6,Yes,No,Yes,Yes,No,Yes,Yes,Yes,Yes,39.5,80,Bovine Johnes Disease
+Horse,Thoroughbred,9,Male,500.0,Nasal Discharge,10,No,No,No,Yes,Yes,No,No,Yes,No,40.0,78,Equine Viral Arteritis
+Cat,British Shorthair,7,Female,4.4,Nasal Discharge,4,Yes,No,No,Yes,No,Yes,Yes,No,No,38.6,142,Upper Respiratory Infection
+Cow,Guernsey,5,Male,610.0,Nasal Discharge,3,Yes,No,Yes,No,No,Yes,No,No,Yes,39.9,82,Bovine Influenza
+Cat,Maine Coon,5,Male,5.2,Nasal Discharge,3,Yes,Yes,No,Yes,No,No,No,Yes,No,38.8,140,Feline Respiratory Disease Complex
+Cat,Scottish Fold,4,Male,4.3,Nasal Discharge,3,Yes,No,Yes,No,No,Yes,No,Yes,Yes,38.7,143,Feline Rhinotracheitis
+Goat,Kiko,3,Male,75.0,Nasal Discharge,6,No,Yes,Yes,No,Yes,Yes,No,Yes,Yes,39.2,82,Caprine Respiratory Disease
+Rabbit,Mini Rex,1,Female,1.2,Nasal Discharge,2,Yes,No,Yes,No,Yes,No,Yes,No,No,38.7,165,Pasteurellosis
+Cat,Bengal,3,Male,5.5,Nasal Discharge,5,Yes,Yes,No,Yes,No,Yes,No,No,Yes,38.9,140,Feline Calicivirus
+Rabbit,Himalayan,2,Male,1.6,Nasal Discharge,3,Yes,Yes,No,Yes,No,No,Yes,No,No,38.5,150,Rabbit Hemorrhagic Disease
+Cat,Siamese,4,Female,4.2,Nasal Discharge,6,Yes,No,Yes,Yes,No,Yes,No,Yes,Yes,38.8,145,Feline Leukemia Virus
+Rabbit,Mini Lop,1,Female,1.2,Nasal Discharge,2,Yes,Yes,Yes,Yes,No,No,Yes,No,No,38.7,155,Myxomatosis
+Rabbit,Holland Lop,3,Male,1.3,Nasal Discharge,4,Yes,Yes,No,No,Yes,No,Yes,Yes,No,38.6,160,Rabbit Syphilis
+Cat,Russian Blue,3,Female,4.8,Nasal Discharge,4,Yes,No,Yes,No,Yes,No,Yes,Yes,No,38.9,145,Feline Leukemia Virus
+Cat,Burmese,4,Male,4.3,Nasal Discharge,3,Yes,No,No,Yes,No,Yes,Yes,No,Yes,39.0,150,Feline Calicivirus
+Cat,Bengal,3,Male,5.0,Nasal Discharge,5,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.0,140,Feline Calicivirus
+Cat,Scottish Fold,5,Female,4.7,Nasal Discharge,6,Yes,Yes,Yes,Yes,No,Yes,No,Yes,Yes,38.9,150,Feline Infectious Peritonitis
+Cat,Abyssinian,3,Male,4.6,Nasal Discharge,4,Yes,No,Yes,No,Yes,Yes,Yes,No,No,39.0,142,Feline Leukemia Virus
+Cat,Persian,6,Female,4.2,Nasal Discharge,5,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.1,148,Feline Coronavirus
+Cat,Sphynx,3,Female,5.0,Nasal Discharge,4,Yes,No,Yes,No,Yes,Yes,No,Yes,Yes,39.0,155,Feline Rhinotracheitis
+Cat,Russian Blue,2,Male,6.0,Nasal Discharge,3,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.0,145,Feline Asthma
+Cat,Bengal,3,Female,6.0,Nasal Discharge,4,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.1,145,Feline Herpesvirus
+Cat,Siberian,7,Male,10.2,Nasal Discharge,5,Yes,Yes,Yes,Yes,No,No,Yes,Yes,No,39.0,135,Feline Asthma
+Cat,Bengal,3,Female,8.0,Nasal Discharge,4,Yes,Yes,No,Yes,No,Yes,Yes,No,Yes,39.0,145,Feline Panleukopenia
+Cat,Ragdoll,3,Male,5.0,Skin Lesions,10,Yes,Yes,No,No,No,No,Yes,No,No,38.6,155,Ringworm
+Cat,Siamese,2,Female,4.0,Sneezing,2,Yes,No,Yes,No,Yes,No,No,No,Yes,39.0,135,Feline Herpesvirus
+Dog,Chihuahua,3,Male,2.5,Sneezing,5,Yes,No,No,Yes,No,No,Yes,No,Yes,39.5,131,Allergic Rhinitis
+Cat,Scottish Fold,4,Male,4.8,Sneezing,5,Yes,No,No,Yes,Yes,No,Yes,No,Yes,38.7,137,Feline Herpesvirus
+Cat,Persian,7,Female,4.1,Sneezing,4,Yes,No,No,Yes,Yes,No,Yes,No,Yes,38.9,142,Feline Upper Respiratory Infection
+Rabbit,Holland Lop,3,Female,1.8,Sneezing,5,No,Yes,No,Yes,Yes,No,No,Yes,No,38.6,160,Snuffles
+Pig,Duroc,3,Female,115.0,Sneezing,5,Yes,No,Yes,No,No,Yes,Yes,No,No,40.0,80,Swine Influenza
+Rabbit,English Angora,4,Female,2.1,Sneezing,3,Yes,No,No,Yes,Yes,No,Yes,No,Yes,38.6,150,Rabbit Viral Hemorrhagic Disease
+Rabbit,Himalayan,3,Male,1.9,Sneezing,2,No,Yes,No,Yes,Yes,Yes,Yes,Yes,No,38.4,160,Respiratory Infection
+Rabbit,Dutch,2,Female,1.4,Sneezing,3,Yes,No,Yes,Yes,No,Yes,No,No,Yes,38.8,155,Upper Respiratory Infection
+Rabbit,English Angora,2,Male,1.5,Sneezing,3,Yes,No,No,Yes,Yes,No,Yes,No,No,38.9,153,Myxomatosis
+Rabbit,English Spot,2,Female,1.3,Sneezing,3,Yes,No,Yes,Yes,No,No,Yes,Yes,No,38.8,155,Rabbit Syphilis
+Rabbit,Mini Rex,1,Female,1.1,Sneezing,2,Yes,Yes,No,Yes,No,No,Yes,No,No,38.7,160,Myxomatosis
+Rabbit,Himalayan,2,Male,1.2,Sneezing,4,Yes,Yes,No,Yes,No,No,Yes,No,Yes,38.8,154,Rabbit Hemorrhagic Disease
+Rabbit,Himalayan,2,Male,1.2,Sneezing,3,Yes,No,Yes,Yes,No,No,Yes,No,Yes,38.7,155,Rabbit Hemorrhagic Disease
+Rabbit,Mini Lop,1,Female,1.0,Sneezing,3,Yes,No,Yes,Yes,Yes,No,Yes,No,No,38.8,158,Myxomatosis
+Rabbit,Holland Lop,1,Male,1.0,Sneezing,3,Yes,Yes,No,Yes,No,Yes,Yes,No,No,38.9,153,Rabbit Syphilis
+Rabbit,Dutch,2,Male,1.8,Sneezing,4,Yes,Yes,No,Yes,No,Yes,No,No,Yes,39.0,150,Rabbit Viral Hemorrhagic Disease
+Rabbit,English Angora,3,Male,1.4,Sneezing,4,Yes,Yes,No,Yes,Yes,Yes,No,Yes,No,38.9,148,Pasteurellosis
+Rabbit,Himalayan,2,Female,1.1,Sneezing,3,Yes,No,Yes,Yes,No,Yes,Yes,No,Yes,38.8,150,Rabbit Calicivirus
+Rabbit,English Lop,3,Male,2.0,Sneezing,4,Yes,Yes,No,Yes,Yes,Yes,Yes,No,No,39.0,155,Myxomatosis
+Rabbit,Himalayan,4,Female,1.6,Sneezing,5,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.0,145,Pasteurellosis
+Rabbit,Dutch,3,Male,2.0,Sneezing,4,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.1,150,Rabbit Hemorrhagic Disease
+Rabbit,Himalayan,3,Male,1.8,Sneezing,4,Yes,Yes,No,Yes,No,Yes,Yes,No,Yes,39.0,140,Rabbit Viral Hemorrhagic Disease
+Rabbit,English Angora,2,Male,1.9,Sneezing,3,Yes,Yes,No,Yes,Yes,Yes,No,No,Yes,39.1,150,Ringworm
+Rabbit,Mini Rex,2,Female,1.5,Sneezing,3,Yes,Yes,Yes,No,Yes,No,Yes,No,Yes,39.1,130,Pneumonia
+Rabbit,Holland Lop,2,Male,1.5,Sneezing,4,Yes,Yes,No,Yes,Yes,Yes,No,Yes,Yes,39.3,130,Pasteurellosis
+Rabbit,Mini Lop,1,Female,1.3,Sneezing,3,Yes,Yes,No,No,Yes,Yes,No,Yes,Yes,39.1,140,Myxomatosis
+Rabbit,Himalayan,2,Male,1.8,Sneezing,4,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,39.2,130,Rabbit Viral Hemorrhagic Disease
+Rabbit,English Angora,1,Female,2.0,Sneezing,5,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.2,120,Respiratory Infection
+Rabbit,Himalayan,2,Male,1.5,Sneezing,4,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,39.2,130,Viral Hemorrhagic Disease
+Rabbit,Mini Rex,1,Female,1.2,Sneezing,3,Yes,Yes,Yes,No,Yes,No,Yes,No,Yes,39.0,130,Rabbit Hemorrhagic Disease
+Rabbit,Himalayan,2,Male,1.6,Sneezing,4,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,39.2,130,Rabbit Hemorrhagic Disease
+Rabbit,Dutch,1,Female,1.4,Sneezing,3,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,39.2,130,Rabbit Viral Hemorrhagic Disease
+Horse,American Quarter,14,Female,520.0,Swollen Joints,10,No,No,Yes,Yes,Yes,No,No,No,No,39.7,75,Equine Arthritis
+Horse,Percheron,12,Male,600.0,Swollen Joints,5,No,No,No,Yes,Yes,No,No,Yes,No,39.9,72,Equine Infectious Anemia
+Horse,Clydesdale,15,Female,700.0,Swollen Joints,8,No,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.5,77,Equine Metabolic Syndrome
+Sheep,Suffolk,6,Male,90.0,Swollen Joints,5,Yes,Yes,No,Yes,No,Yes,No,Yes,No,39.4,78,Caseous Lymphadenitis
+Sheep,Leicester Longwool,6,Male,95.0,Swollen Joints,5,Yes,No,Yes,No,Yes,No,No,Yes,No,39.4,74,Chlamydia in Sheep
+Sheep,Karakul,5,Male,80.0,Swollen Joints,4,Yes,No,Yes,Yes,Yes,Yes,No,Yes,Yes,39.4,75,Scrapie
+Sheep,Corriedale,4,Female,95.0,Swollen Joints,5,Yes,No,No,Yes,Yes,Yes,No,Yes,No,39.1,76,Blue Tongue
+Sheep,Tunis,4,Male,95.0,Swollen Joints,5,Yes,Yes,No,Yes,No,Yes,Yes,No,No,39.2,76,Bluetongue Virus
+Cat,Maine Coon,2,Male,6.0,Vomiting,4,Yes,Yes,Yes,No,No,No,No,No,No,39.1,140,Intestinal Parasites
+Cat,Bengal,1,Male,4.2,Vomiting,3,Yes,Yes,Yes,No,No,No,No,No,No,38.8,140,Panleukopenia
+Dog,Chihuahua,1,Male,3.0,Vomiting,3,Yes,Yes,Yes,No,No,No,No,No,No,39.4,135,Parvovirus
+Dog,Bulldog,5,Male,22.0,Vomiting,3,Yes,Yes,No,No,Yes,Yes,No,No,No,39.6,138,Gastroenteritis
+Cat,Abyssinian,5,Female,4.5,Vomiting,3,No,Yes,No,Yes,No,Yes,No,Yes,No,38.5,142,Pancreatitis
+Cat,Devon Rex,6,Male,4.2,Vomiting,9,Yes,No,Yes,No,Yes,No,Yes,No,No,38.9,146,Inflammatory Bowel Disease
+Cat,Sphynx,5,Female,3.0,Vomiting,6,Yes,Yes,No,No,Yes,No,Yes,No,No,38.7,143,Gastroenteritis
+Dog,Dachshund,7,Female,8.0,Vomiting,3,Yes,Yes,No,Yes,Yes,No,No,Yes,Yes,39.2,120,Gastroenteritis
+Dog,Beagle,5,Male,10.0,Vomiting,3,Yes,Yes,No,No,No,Yes,No,Yes,No,39.2,132,Gastroenteritis
+Dog,Rottweiler,7,Female,35.0,Vomiting,3,Yes,No,Yes,No,Yes,No,No,No,Yes,39.0,127,Parvovirus
+Cat,American Curl,5,Male,3.7,Vomiting,3,Yes,Yes,No,No,Yes,Yes,No,No,No,38.8,148,Pancreatitis
+Dog,Chihuahua,9,Male,2.0,Vomiting,2,Yes,Yes,No,No,No,Yes,No,No,Yes,39.1,128,Gastroenteritis
+Dog,Dalmatian,8,Female,20.0,Vomiting,4,Yes,No,Yes,No,Yes,No,No,Yes,No,39.0,120,Pancreatitis
+Dog,Boxer,8,Female,27.0,Vomiting,4,Yes,Yes,No,No,Yes,No,No,Yes,No,39.2,131,Gastroenteritis
+Dog,Golden Retriever,5,Male,32.0,Vomiting,3,Yes,No,Yes,No,Yes,No,No,No,Yes,39.2,130,Gastroenteritis
+Pig,Yorkshire,2,Male,110.0,Vomiting,3,No,Yes,No,Yes,Yes,No,No,Yes,Yes,39.5,85,Porcine Epidemic Diarrhea
+Dog,Corgi,5,Male,11.0,Vomiting,3,Yes,No,Yes,No,No,Yes,No,Yes,No,39.2,134,Pancreatitis
+Pig,Tamworth,4,Female,120.0,Vomiting,5,Yes,Yes,No,Yes,Yes,No,Yes,No,No,39.6,84,Swine Dysentery
+Dog,Golden Retriever,7,Male,30.0,Vomiting,6,Yes,No,Yes,Yes,No,No,Yes,No,No,39.5,118,Canine Parvovirus
+Cat,Sphynx,4,Male,5.2,Vomiting,5,Yes,Yes,Yes,No,Yes,Yes,No,No,No,39.1,148,Feline Infectious Peritonitis
+Goat,Alpine,5,Male,72.0,Vomiting,6,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.0,81,Caprine Arthritis Encephalitis
+Dog,Doberman Pinscher,6,Male,40.0,Vomiting,5,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.3,119,Canine Distemper
+Goat,Nubian,6,Female,60.0,Vomiting,5,Yes,No,Yes,Yes,No,Yes,No,No,No,39.3,82,Caprine Respiratory Disease
+Pig,Wessex Saddleback,3,Male,105.0,Vomiting,5,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.0,84,Actinobacillus Suis
+Dog,Cocker Spaniel,5,Female,20.0,Vomiting,4,Yes,Yes,No,No,Yes,No,No,Yes,No,39.2,123,Canine Leptospirosis
+Goat,Saanen,5,Female,65.0,Vomiting,6,Yes,Yes,No,No,Yes,Yes,No,Yes,Yes,39.4,80,Caprine Pleuropneumonia
+Goat,Nigerian Dwarf,2,Female,55.0,Vomiting,4,Yes,Yes,No,Yes,No,No,Yes,No,Yes,39.2,82,Caprine Arthritis Encephalitis
+Goat,Toggenburg,5,Female,60.0,Vomiting,4,Yes,Yes,Yes,No,Yes,No,Yes,No,No,39.6,81,Caprine Pleuropneumonia
+Goat,Boer,6,Male,70.0,Vomiting,5,Yes,Yes,No,Yes,No,Yes,Yes,No,No,39.4,80,Caprine Arthritis Encephalitis
+Goat,Angora,6,Female,60.0,Vomiting,5,Yes,Yes,Yes,Yes,No,No,Yes,No,Yes,39.6,83,Caprine Pleuropneumonia
+Goat,Kiko,5,Male,72.0,Vomiting,6,Yes,Yes,No,Yes,No,Yes,Yes,No,Yes,39.5,80,Caprine Pleuropneumonia
+Dog,Poodle,3,Female,20.0,Vomiting,4,Yes,No,Yes,No,Yes,Yes,Yes,No,Yes,39.0,120,Parvovirus
+Goat,Nubian,4,Male,72.0,Vomiting,6,Yes,Yes,No,Yes,Yes,No,Yes,No,Yes,39.6,80,Pneumonia
+Goat,Boer,6,Female,75.0,Vomiting,6,Yes,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.7,82,Caprine Viral Arthritis
+Goat,Alpine,5,Male,80.0,Vomiting,4,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.5,80,Caseous Lymphadenitis
+Goat,Saanen,5,Female,85.0,Vomiting,6,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,39.6,85,Caprine Arthritis Encephalitis
+Goat,Nubian,6,Female,95.0,Vomiting,6,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.8,80,Pneumonia
+Goat,Angora,4,Male,90.0,Vomiting,5,Yes,Yes,Yes,No,Yes,No,Yes,No,Yes,39.6,82,Caprine Arthritis
+Cat,Persian,4,Female,7.0,Vomiting,5,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,39.1,125,Feline Infectious Peritonitis
+Goat,Boer,6,Male,100.0,Vomiting,5,Yes,Yes,No,Yes,No,Yes,Yes,Yes,Yes,39.6,85,Pneumonia
+Dog,Golden Retriever,5,Male,40.0,Vomiting,5,Yes,Yes,No,Yes,No,Yes,Yes,No,No,39.2,130,Canine Parvovirus
+Goat,Nubian,7,Female,120.0,Vomiting,5,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,39.7,85,Foot-and-Mouth Disease
+Goat,Saanen,8,Female,110.0,Vomiting,6,Yes,Yes,Yes,No,Yes,Yes,No,No,Yes,39.8,85,Caprine Arthritis Encephalitis
+Cat,Maine Coon,4,Male,10.0,Vomiting,5,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,No,39.0,140,Feline Leukemia Virus
+Goat,Kiko,4,Female,90.0,Vomiting,5,Yes,No,Yes,Yes,No,Yes,Yes,No,Yes,39.6,85,Caprine Arthritis Encephalitis
+Goat,Angora,7,Female,100.0,Vomiting,5,Yes,Yes,Yes,No,Yes,No,Yes,Yes,Yes,39.7,80,Pneumonia
+Cat,Bengal,4,Male,10.0,Vomiting,4,Yes,Yes,No,Yes,No,Yes,Yes,No,Yes,39.2,145,Feline Panleukopenia
+Goat,Boer,7,Female,120.0,Vomiting,5,Yes,Yes,No,Yes,Yes,No,Yes,Yes,Yes,39.5,90,Foot-and-Mouth Disease
+Goat,Saanen,2,Male,85.0,Vomiting,5,Yes,Yes,No,No,Yes,Yes,Yes,No,Yes,39.6,90,Caprine Arthritis Encephalitis Virus
+Goat,Toggenburg,5,Female,75.0,Vomiting,5,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,39.7,85,Pneumonia
+Goat,Alpine,6,Male,110.0,Vomiting,5,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.6,90,Caprine Arthritis Encephalitis Virus
+Goat,Nubian,2,Female,80.0,Vomiting,4,Yes,Yes,Yes,Yes,No,Yes,No,No,Yes,39.7,90,Caprine Arthritis Encephalitis
+Goat,Alpine,3,Female,75.0,Vomiting,4,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,39.7,95,Caprine Arthritis Encephalitis
+Goat,Nubian,4,Male,80.0,Vomiting,5,Yes,Yes,No,Yes,No,Yes,Yes,Yes,No,39.6,90,Caprine Respiratory Disease
+Goat,Saanen,3,Female,75.0,Vomiting,5,Yes,Yes,Yes,No,Yes,No,Yes,Yes,Yes,39.5,90,Caprine Arthritis Encephalitis
+Goat,Boer,5,Male,85.0,Vomiting,5,Yes,Yes,Yes,No,Yes,No,Yes,Yes,Yes,39.6,95,Goat Pox
+Goat,Kiko,4,Female,70.0,Vomiting,5,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,No,39.5,90,Caprine Arthritis Encephalitis
+Goat,Toggenburg,2,Female,70.0,Vomiting,4,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,No,39.4,90,Caprine Arthritis Encephalitis
+Goat,Alpine,3,Male,75.0,Vomiting,5,Yes,Yes,Yes,No,Yes,No,Yes,Yes,No,39.5,100,Caprine Viral Arthritis
+Goat,Nubian,4,Female,80.0,Vomiting,6,Yes,Yes,Yes,Yes,No,Yes,Yes,No,Yes,39.5,95,Caprine Respiratory Disease
+Dog,Labrador,4,Male,30.0,Vomiting,5,Yes,Yes,No,Yes,No,No,No,Yes,No,39.2,100,Canine Parvovirus
+Cat,Maine Coon,2,Male,6.0,Vomiting,4,Yes,Yes,Yes,No,No,No,No,No,No,39.1,140,Intestinal Parasites
+Horse,Tennessee Walker,16,Female,530.0,Weight Loss,8,No,No,Yes,Yes,No,Yes,Yes,No,No,39.6,71,Equine Cushings Disease
+Cow,Jersey,6,Male,620.0,Weight Loss,7,Yes,No,Yes,No,Yes,Yes,No,No,No,39.4,87,Tuberculosis
+Horse,Morgan,11,Female,530.0,Weight Loss,8,No,Yes,Yes,No,Yes,No,No,Yes,No,39.7,74,Equine Encephalitis
+Cow,Limousin,6,Female,620.0,Weight Loss,10,Yes,Yes,No,Yes,No,Yes,No,No,Yes,39.4,85,Johnes Disease
+Sheep,Suffolk,3,Female,80.0,Weight Loss,8,Yes,No,Yes,No,No,Yes,No,Yes,No,39.8,77,Scrapie
+Sheep,Cheviot,5,Male,85.0,Weight Loss,7,Yes,Yes,No,No,Yes,No,No,No,Yes,39.2,79,Foot-and-Mouth Disease
+Sheep,Romney,6,Female,78.0,Weight Loss,9,Yes,Yes,No,Yes,No,No,Yes,Yes,No,39.7,76,Scrapie
