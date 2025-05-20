@@ -1,87 +1,208 @@
 <template>
-  <div>
-    <h2>Cargar y Editar CSV</h2>
-    <input type="file" @change="handleFileUpload" accept=".csv" />
+  <div class="container-fluid">
+    <!-- Navigation -->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#"><i class="fas fa-paw me-2"></i>VetPredict</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-progress ms-auto">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/">
+                  <span class="nav-icon"><i class="fas fa-home"></i></span>
+                  <span class="nav-text">Home</span>
+                  <span class="nav-check"><i class="fas fa-check"></i></span>
+                  <span class="badge bg-dark">4</span>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link active" to="/EditarCSV">
+                  <span class="nav-icon"><i class="fas fa-box-open"></i></span>
+                  <span class="nav-text">EditarCSV</span>
+                  <span class="nav-check"><i class="fas fa-check"></i></span>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/usuarios">
+                  <span class="nav-icon"><i class="fas fa-blog"></i></span>
+                  <span class="nav-text">Usuarios</span>
+                  <span class="nav-check"><i class="fas fa-check"></i></span>
+                </router-link>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-    <div v-if="csvData.length" style="margin-top: 20px">
-      <!-- Tabla con scroll -->
-      <div style="overflow-x: auto">
-        <table border="1" style="min-width: 600px">
-          <thead>
-            <tr>
-              <th v-for="(header, index) in csvData[0]" :key="index">
-                <input v-model="csvData[0][index]" />
-                <button @click="deleteColumn(index)">🗑</button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(row, rowIndex) in paginatedRows" :key="rowIndex">
-              <td v-for="(cell, colIndex) in row" :key="colIndex">
-                <input
-                  v-model="
-                    csvData[currentPage * rowsPerPage + rowIndex + 1][colIndex]
-                  "
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Control de visualización -->
-      <div style="margin-top: 10px">
-        Mostrar filas:
-        <select v-model="rowsPerPage">
-          <option :value="5">5</option>
-          <option :value="10">10</option>
-        </select>
-      </div>
-
-      <!-- Paginación -->
-      <div style="margin-top: 10px">
-        Página {{ currentPage + 1 }} de {{ totalPages }}
-        <button @click="previousPage" :disabled="currentPage === 0">
-          Anterior
-        </button>
-        <button @click="nextPage" :disabled="currentPage >= totalPages - 1">
-          Siguiente
-        </button>
-      </div>
-
-      <!-- Buscar y reemplazar -->
-      <div style="margin-top: 20px">
-        <h3>Buscar y Reemplazar</h3>
-        <input v-model="searchTerm" placeholder="Buscar..." />
-        <input v-model="replaceTerm" placeholder="Reemplazar con..." />
-        <button @click="searchAndReplace">Reemplazar</button>
-      </div>
-
-      <!-- Botones -->
-      <div style="margin-top: 20px">
-        <button @click="undo" :disabled="!history.length">Deshacer</button>
-        <button @click="downloadCSV">Descargar CSV</button>
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div
+        id="csvAlertToast"
+        class="toast align-items-center text-dark border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            Primero debes cargar o editar un archivo CSV.
+          </div>
+          <button
+            type="button"
+            class="btn-close me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="botones-weka">
-    <button @click="enviarAWEKA('j48')">Aplicar Árbol de Decisión (J48)</button>
-    <button @click="enviarAWEKA('cluster')">
-      Aplicar Clustering (K-Means)
-    </button>
-    <button @click="enviarAWEKA('perceptron')">
-      Aplicar Perceptrón Multicapa
-    </button>
-  </div>
+    <!-- Main Content -->
+    <section class="main-content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 animate__animated animate__fadeInUp">
+            <h2 class="section-title text-dark">Cargar y Editar CSV</h2>
+            <div class="mb-4">
+              <input type="file" @change="handleFileUpload" accept=".csv" class="form-control" />
+            </div>
 
-  <pre v-if="resultadoWeka">{{ resultadoWeka }}</pre>
+            <div v-if="csvData.length" class="card glass-card">
+              <!-- Tabla con scroll -->
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="table-dark">
+                    <tr>
+                      <th v-for="(header, index) in csvData[0]" :key="index">
+                        <input v-model="csvData[0][index]" class="form-control form-control-sm" />
+                        <button @click="deleteColumn(index)" class="btn btn-sm btn-danger ms-2">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row, rowIndex) in paginatedRows" :key="rowIndex">
+                      <td v-for="(cell, colIndex) in row" :key="colIndex">
+                        <input
+                          v-model="csvData[currentPage * rowsPerPage + rowIndex + 1][colIndex]"
+                          class="form-control form-control-sm"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Control de visualización -->
+              <div class="d-flex align-items-center mt-3">
+                <label class="me-2">Mostrar filas:</label>
+                <select v-model="rowsPerPage" class="form-select w-auto">
+                  <option :value="5">5</option>
+                  <option :value="10">10</option>
+                </select>
+              </div>
+
+              <!-- Paginación -->
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+                <div>
+                  <button
+                    @click="previousPage"
+                    :disabled="currentPage === 0"
+                    class="btn btn-elegant me-2"
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    @click="nextPage"
+                    :disabled="currentPage >= totalPages - 1"
+                    class="btn btn-elegant"
+                  >
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+
+              <!-- Buscar y reemplazar -->
+              <div class="mt-4">
+                <h3 class="text-gold-subtle">Buscar y Reemplazar</h3>
+                <div class="input-group mb-3">
+                  <input
+                    v-model="searchTerm"
+                    placeholder="Buscar..."
+                    class="form-control"
+                  />
+                  <input
+                    v-model="replaceTerm"
+                    placeholder="Reemplazar con..."
+                    class="form-control"
+                  />
+                  <button @click="searchAndReplace" class="btn btn-elegant">
+                    Reemplazar
+                  </button>
+                </div>
+              </div>
+
+              <!-- Botones -->
+              <div class="d-flex justify-content-between mt-3">
+                <button
+                  @click="undo"
+                  :disabled="!history.length"
+                  class="btn btn-elegant"
+                >
+                  Deshacer
+                </button>
+                <button @click="downloadCSV" class="btn btn-elegant">
+                  Descargar CSV
+                </button>
+              </div>
+            </div>
+
+            <!-- Botones WEKA -->
+            <div class="botones-weka mt-4">
+              <button @click="enviarAWEKA('j48')" class="btn btn-elegant me-2">
+                Aplicar Árbol de Decisión (J48)
+              </button>
+              <button @click="enviarAWEKA('cluster')" class="btn btn-elegant me-2">
+                Aplicar Clustering (K-Means)
+              </button>
+              <button @click="enviarAWEKA('perceptron')" class="btn btn-elegant">
+                Aplicar Perceptrón Multicapa
+              </button>
+            </div>
+
+            <pre v-if="resultadoWeka" class="mt-4 p-3 bg-dark text-light rounded">{{
+              resultadoWeka
+            }}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
 import Papa from "papaparse";
 import axios from "axios";
+import { Toast } from 'bootstrap';
+
 export default {
+  name: 'EditarCsvPage',
   data() {
     return {
       csvData: [],
@@ -163,7 +284,13 @@ export default {
     },
     async enviarAWEKA(modelo) {
       if (!this.csvData || this.csvData.length === 0) {
-        alert("Primero debes cargar o editar un archivo CSV.");
+        // Show toast instead of alert
+        const toastElement = document.getElementById('csvAlertToast');
+        const toast = new Toast(toastElement, {
+          autohide: true,
+          delay: 5000, // Auto-dismiss after 5 seconds
+        });
+        toast.show();
         return;
       }
 
@@ -187,3 +314,302 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* Import Bootstrap and Animate.css via CDN */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+/* Import Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+/* Import a professional font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+/* Ensure full-page background */
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100%;
+  background: linear-gradient(135deg, #3A5F4A 0%, #F0F4F1 50%, #3A5F4A 100%) !important;
+}
+
+.container-fluid {
+  font-family: 'Roboto Slab', serif;
+  color: #2F3E46;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #3A5F4A 0%, #F0F4F1 50%, #3A5F4A 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.container-fluid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(218, 165, 32, 0.05) 10%, transparent 10%);
+  background-size: 50px 50px;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Estilos para el Header y Navbar */
+.header {
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(240, 244, 241, 0.9) 0%, rgba(78, 205, 196, 0.1) 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  padding: 0;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  color: #be8b08 !important;
+  font-weight: 700;
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
+.nav-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.nav-progress::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+
+.nav-item {
+  position: relative;
+  margin: 0 15px;
+  z-index: 2;
+}
+
+.nav-link {
+  color: #2F3E46 !important;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link .nav-icon {
+  font-size: 1.3rem;
+  margin-right: 8px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.nav-link .nav-text {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.nav-link .nav-check {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #28a745;
+  font-size: 0.9rem;
+  display: none;
+  background: #fff;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.nav-link .badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  background: #2F3E46;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover .badge {
+  transform: scale(1.1);
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #2F3E46 !important;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background: #C8E6C9;
+  color: #2F3E46 !important;
+  font-weight: 600;
+}
+
+.nav-link.active .nav-icon {
+  background: #28a745;
+  color: #FFFFFF;
+}
+
+.nav-link.active .nav-check {
+  display: inline;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(47, 62, 70, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Main Content Section */
+.main-content {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  color: #2F3E46;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.text-gold-subtle {
+  color: #be8b08;
+  text-shadow: 0 0 4px rgba(190, 139, 8, 0.4);
+}
+
+.btn-elegant {
+  background: #be8b08;
+  color: #2F3E46;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  box-shadow: 0 0 6px rgba(190, 139, 8, 0.6);
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.btn-elegant:hover {
+  background: #4ECDC4;
+  color: #2F3E46;
+  box-shadow: 0 0 12px rgba(78, 205, 196, 0.8);
+  transform: scale(1.1);
+}
+
+.glass-card {
+  backdrop-filter: blur(12px);
+  background: rgba(240, 244, 241, 0.6);
+  border: 1px solid rgba(190, 139, 8, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.table {
+  min-width: 600px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.form-control-sm {
+  font-size: 0.9rem;
+}
+
+.botones-weka {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Toast Styling */
+.toast {
+  background: linear-gradient(135deg, #be8b08 0%, #4ECDC4 100%);
+  color: #2F3E46;
+  font-family: 'Roboto Slab', serif;
+  font-size: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.toast-body {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.toast-body i {
+  color: #2F3E46;
+  font-size: 1.2rem;
+}
+
+.btn-close {
+  filter: invert(20%) sepia(20%) saturate(500%) hue-rotate(180deg);
+}
+</style>
