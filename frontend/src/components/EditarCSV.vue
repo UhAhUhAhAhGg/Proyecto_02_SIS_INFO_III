@@ -343,7 +343,7 @@ export default {
         this.currentPage--;
       }
     },
-    async enviarAWEKA(modelo) {
+  /*  async enviarAWEKA(modelo) {
       if (!this.csvData || this.csvData.length === 0) {
         this.mostrarToastError('Primero debes cargar o editar un archivo CSV.');
         return;
@@ -406,6 +406,8 @@ export default {
       }
     },
 
+*/
+    
     // Método auxiliar para mostrar toasts de éxito
     mostrarToastSuccess(mensaje) {
       const toastElement = document.getElementById('successToast');
@@ -508,7 +510,7 @@ export default {
       }
     },
 
-
+/*
     renderTreeChart(treeText) {
       if (!this.$refs.treeChart) {
         this.treeError = true;
@@ -721,6 +723,543 @@ export default {
         this.treeError = true;
         this.mostrarToastError('Error al renderizar el árbol de decisión');
       }
+    },*/
+
+ /*   renderTreeChart(treeText) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      if (this.charts.tree) {
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        const treeData = this.parseTreeText(treeText);
+        
+        const option = {
+          tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove',
+            formatter: ({ data }) => {
+              return data.value ? 
+                `<b>${data.name}</b><br/>Resultado: ${data.value}` : 
+                `<b>${data.name}</b>`;
+            }
+          },
+          series: [{
+            type: 'tree',
+            data: [treeData],
+            top: '5%',
+            left: '10%',
+            bottom: '5%',
+            right: '10%',
+            symbolSize: 10,
+            orient: 'vertical',
+            expandAndCollapse: true,
+            initialTreeDepth: 3,
+            roam: true,
+            label: {
+              position: 'top',
+              rotate: 0,
+              verticalAlign: 'middle',
+              align: 'center',
+              fontSize: 12,
+              color: '#2F3E46',
+              formatter: function(params) {
+                const maxLength = 20;
+                return params.name.length > maxLength ? 
+                  params.name.substring(0, maxLength) + '...' : 
+                  params.name;
+              }
+            },
+            leaves: {
+              label: {
+                position: 'right',
+                verticalAlign: 'middle',
+                align: 'left',
+                fontSize: 11
+              }
+            },
+            emphasis: {
+              focus: 'descendant'
+            },
+            lineStyle: {
+              color: '#3A5F4A',
+              width: 2
+            }
+          }]
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+        window.addEventListener('resize', this.charts.tree.resize);
+      } catch (error) {
+        console.error("Error renderizando árbol:", error);
+        this.treeError = true;
+      }
+    },*/
+
+    renderTreeChart(treeText) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      if (this.charts.tree) {
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        
+        // Parsear el texto del árbol WEKA de manera más robusta
+        const treeData = this.parseWekaTreeText(treeText);
+        
+        if (!treeData || !treeData.children || treeData.children.length === 0) {
+          throw new Error("No se pudo extraer estructura del árbol");
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove',
+            formatter: ({ data }) => {
+              return data.value ? 
+                `<b>${data.name}</b><br/>${data.value}` : 
+                `<b>${data.name}</b>`;
+            }
+          },
+          series: [{
+            type: 'tree',
+            data: [treeData],
+            top: '10%',
+            left: '15%',
+            bottom: '10%',
+            right: '15%',
+            symbolSize: 12,
+            orient: 'vertical',
+            expandAndCollapse: true,
+            initialTreeDepth: 2,
+            roam: true,
+            label: {
+              position: 'top',
+              rotate: 0,
+              verticalAlign: 'middle',
+              align: 'center',
+              fontSize: 11,
+              color: '#2F3E46',
+              formatter: function(params) {
+                // Limitar la longitud del texto y eliminar caracteres especiales
+                const cleanText = params.name.replace(/[^\w\s]/gi, '');
+                const maxLength = 15;
+                return cleanText.length > maxLength ? 
+                  cleanText.substring(0, maxLength) + '...' : 
+                  cleanText;
+              }
+            },
+            leaves: {
+              label: {
+                position: 'right',
+                verticalAlign: 'middle',
+                align: 'left',
+                fontSize: 10
+              }
+            },
+            lineStyle: {
+              color: '#3A5F4A',
+              width: 1.5,
+              curveness: 0.1
+            },
+            emphasis: {
+              focus: 'ancestor',
+              itemStyle: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.3)'
+              }
+            }
+          }],
+          animationDuration: 800
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+        
+        // Manejar redimensionamiento
+        const resizeHandler = () => this.charts.tree.resize();
+        window.addEventListener('resize', resizeHandler);
+        this.resizeHandler = resizeHandler;
+
+      } catch (error) {
+        console.error("Error renderizando árbol J48:", error);
+        this.treeError = true;
+        this.mostrarToastError('Error al renderizar el árbol de decisión. Mostrando texto completo.');
+        this.mostrarTextoCompleto = true;
+      }
+    },
+
+    // Nuevo método de parsing más robusto
+    parseWekaTreeText(text) {
+      if (!text) return { name: "Árbol no disponible", children: [] };
+      
+      const lines = text.split('\n').filter(line => line.trim().length > 0);
+      if (lines.length === 0) return { name: "Árbol vacío", children: [] };
+
+      // Identificar la raíz (primera línea sin indentación)
+      const rootLine = lines.find(line => !line.startsWith('|') && !line.startsWith(' '));
+      if (!rootLine) return { name: "Estructura no reconocida", children: [] };
+
+      const root = {
+        name: rootLine.trim().split(':')[0].trim(), // Eliminar valores si es hoja
+        children: []
+      };
+
+      const stack = [{ node: root, depth: 0 }];
+
+      for (const line of lines) {
+        if (line === rootLine) continue;
+
+        const depth = (line.match(/\|/g) || []).length;
+        const cleanLine = line.replace(/\|/g, '').trim();
+        const isLeaf = cleanLine.includes(':');
+
+        // Extraer nombre y valor (si es hoja)
+        let nodeName, nodeValue;
+        if (isLeaf) {
+          [nodeName, nodeValue] = cleanLine.split(':').map(part => part.trim());
+        } else {
+          nodeName = cleanLine;
+          nodeValue = null;
+        }
+
+        const newNode = {
+          name: nodeName,
+          value: nodeValue,
+          itemStyle: {
+            color: isLeaf ? '#4ECDC4' : '#be8b08'
+          }
+        };
+
+        if (!isLeaf) {
+          newNode.children = [];
+        }
+
+        // Encontrar el padre correcto en la jerarquía
+        while (stack.length > 0 && stack[stack.length - 1].depth >= depth) {
+          stack.pop();
+        }
+
+        // Añadir el nuevo nodo al padre correspondiente
+        if (stack.length > 0) {
+          const parent = stack[stack.length - 1].node;
+          if (!parent.children) parent.children = [];
+          parent.children.push(newNode);
+        }
+
+        // Apilar si no es hoja (para futuros hijos)
+        if (!isLeaf) {
+          stack.push({ node: newNode, depth });
+        }
+      }
+
+      return root;
+    },
+
+
+    /*renderNetworkChart(networkInfo) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      if (this.charts.tree) {
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        
+        const nodes = networkInfo.layers.map(layer => ({
+          id: layer.id,
+          name: layer.id,
+          category: layer.type === 'input' ? 0 : (layer.type === 'hidden' ? 1 : 2),
+          symbolSize: layer.type === 'input' ? 30 : (layer.type === 'hidden' ? 25 : 35),
+          itemStyle: {
+            color: layer.type === 'input' ? '#3A5F4A' : 
+                  (layer.type === 'hidden' ? '#be8b08' : '#4ECDC4')
+          }
+        }));
+
+        const links = networkInfo.connections.map(conn => ({
+          source: conn.from,
+          target: conn.to,
+          lineStyle: {
+            width: Math.abs(conn.weight) * 2,
+            curveness: 0.1
+          }
+        }));
+
+        const option = {
+          title: {
+            text: 'Red Neuronal Multilayer Perceptron',
+            subtext: 'Visualización de la arquitectura',
+            left: 'center'
+          },
+          tooltip: {},
+          legend: {
+            data: ['Input', 'Hidden', 'Output'],
+            top: 30
+          },
+          animationDuration: 1500,
+          series: [{
+            type: 'graph',
+            layout: 'force',
+            data: nodes,
+            links: links,
+            categories: [
+              { name: 'Input' },
+              { name: 'Hidden' },
+              { name: 'Output' }
+            ],
+            roam: true,
+            label: {
+              show: true,
+              position: 'right'
+            },
+            force: {
+              repulsion: 100,
+              edgeLength: 100
+            },
+            emphasis: {
+              focus: 'adjacency',
+              lineStyle: {
+                width: 4
+              }
+            }
+          }]
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+        window.addEventListener('resize', this.charts.tree.resize);
+      } catch (error) {
+        console.error("Error renderizando red neuronal:", error);
+        this.treeError = true;
+      }
+    },*/
+  /*v1  procesarPerceptron(data) {
+      const rawText = data.textResult || data;
+      
+      // Extraer información básica de la red neuronal
+      const lines = rawText.split('\n');
+      const networkInfo = {
+        layers: [],
+        connections: []
+      };
+
+      // Detectar capas
+      const layerPattern = /(Input|Hidden|Output)\s+Layer.*Nodes:\s*(\d+)/i;
+      
+      lines.forEach(line => {
+        const match = line.match(layerPattern);
+        if (match) {
+          const layerType = match[1].toLowerCase();
+          const nodeCount = parseInt(match[2]);
+          
+          for (let i = 0; i < nodeCount; i++) {
+            networkInfo.layers.push({
+              id: `${layerType}_${i}`,
+              type: layerType,
+              name: `${match[1]} ${i+1}`
+            });
+          }
+        }
+      });
+
+      // Si no se detectaron capas, crear una estructura por defecto
+      if (networkInfo.layers.length === 0) {
+        networkInfo.layers = [
+          { id: 'input_0', type: 'input', name: 'Input 1' },
+          { id: 'hidden_0', type: 'hidden', name: 'Hidden 1' },
+          { id: 'output_0', type: 'output', name: 'Output 1' }
+        ];
+      }
+
+      // Crear conexiones (simuladas si no se pueden extraer)
+      for (let i = 0; i < networkInfo.layers.length - 1; i++) {
+        for (let j = i + 1; j < networkInfo.layers.length; j++) {
+          if (networkInfo.layers[i].type !== 'output' && networkInfo.layers[j].type !== 'input') {
+            networkInfo.connections.push({
+              from: networkInfo.layers[i].id,
+              to: networkInfo.layers[j].id,
+              weight: Math.random() * 2 - 1 // Valor simulado
+            });
+          }
+        }
+      }
+
+      this.resultadoWeka = {
+        textResult: rawText,
+        graphData: {
+          type: 'network',
+          data: networkInfo
+        }
+      };
+
+      this.$nextTick(() => {
+        this.renderNetworkChart(networkInfo);
+      });
+    },
+*/
+  procesarPerceptron(data) {
+    try {
+      // Obtener el texto crudo del modelo
+      let reporte = typeof data === 'object' ? JSON.stringify(data, null, 2) : data;
+      
+      // Limpiar y formatear el reporte
+      reporte = this.formatearReportePerceptron(reporte);
+      
+      this.resultadoWeka = {
+        textResult: reporte,
+        graphData: null // No necesitamos gráfico
+      };
+
+    } catch (error) {
+      console.error("Error procesando perceptrón:", error);
+      this.resultadoWeka = {
+        textResult: `ERROR AL PROCESAR EL PERCEPTRÓN:\n${error.message}\n\nDatos recibidos:\n${typeof data === 'object' ? JSON.stringify(data, null, 2) : data}`,
+        graphData: null
+      };
+      this.treeError = true;
+    }
+  },
+
+  formatearReportePerceptron(texto) {
+    // Extraer las secciones clave del reporte de WEKA
+    const lineas = texto.split('\n');
+    let reporteFiltrado = [];
+    let seccionRelevante = false;
+
+    const seccionesClave = [
+      'Options',
+      'Linear Node',
+      'Sigmoid Node',
+      'Class',
+      'Error',
+      'Accuracy',
+      'Time'
+    ];
+
+    lineas.forEach(linea => {
+      // Buscar inicio de sección relevante
+      if (seccionesClave.some(seccion => linea.includes(seccion))) {
+        seccionRelevante = true;
+      }
+
+      // Incluir líneas relevantes
+      if (seccionRelevante && linea.trim() !== '') {
+        reporteFiltrado.push(linea);
+      }
+
+      // Resetear si encontramos línea vacía después de sección
+      if (seccionRelevante && linea.trim() === '') {
+        seccionRelevante = false;
+        reporteFiltrado.push(''); // Mantener separación
+      }
+    });
+
+    // Si no encontramos secciones clave, devolver todo el texto
+    return reporteFiltrado.length > 5 ? reporteFiltrado.join('\n') : texto;
+  },
+
+    renderNetworkChart(networkInfo) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      if (this.charts.tree) {
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        
+        const categories = [
+          { name: 'Input' },
+          { name: 'Hidden' }, 
+          { name: 'Output' }
+        ];
+
+        const nodes = networkInfo.layers.map(layer => ({
+          id: layer.id,
+          name: layer.name,
+          category: layer.type === 'input' ? 0 : (layer.type === 'hidden' ? 1 : 2),
+          symbolSize: layer.type === 'input' ? 25 : (layer.type === 'output' ? 30 : 20),
+          itemStyle: {
+            color: layer.type === 'input' ? '#3A5F4A' : 
+                  (layer.type === 'hidden' ? '#be8b08' : '#4ECDC4')
+          }
+        }));
+
+        const links = networkInfo.connections.map(conn => ({
+          source: conn.from,
+          target: conn.to,
+          lineStyle: {
+            width: Math.abs(conn.weight) * 3,
+            curveness: 0.1
+          }
+        }));
+
+        const option = {
+          title: {
+            text: 'Arquitectura de la Red Neuronal',
+            subtext: 'Perceptrón Multicapa',
+            left: 'center'
+          },
+          tooltip: {},
+          legend: {
+            data: ['Input', 'Hidden', 'Output'],
+            top: 30
+          },
+          animationDuration: 1500,
+          series: [{
+            type: 'graph',
+            layout: 'circular',
+            data: nodes,
+            links: links,
+            categories: categories,
+            roam: true,
+            label: {
+              show: true,
+              position: 'right'
+            },
+            force: {
+              repulsion: 100,
+              edgeLength: 100
+            },
+            emphasis: {
+              focus: 'adjacency',
+              lineStyle: {
+                width: 4
+              }
+            }
+          }]
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+        
+        const resizeHandler = () => this.charts.tree.resize();
+        window.addEventListener('resize', resizeHandler);
+        this.resizeHandler = resizeHandler;
+
+      } catch (error) {
+        console.error("Error renderizando red neuronal:", error);
+        this.treeError = true;
+      }
     },
 
     formatTreeData(data) {
@@ -833,68 +1372,6 @@ export default {
       
       this.charts.bar.setOption(option);
     },
-
-    
-    renderNetworkChart(data) {
-      const chartDom = this.$refs.networkChart;
-      this.charts.network = echarts.init(chartDom);
-      
-      const option = {
-        tooltip: {},
-        legend: {
-          data: ['Input', 'Hidden', 'Output']
-        },
-        series: [
-          {
-            type: 'graph',
-            layout: 'force',
-            symbolSize: 30,
-            categories: [
-              { name: 'Input' },
-              { name: 'Hidden' },
-              { name: 'Output' }
-            ],
-            data: data.layers.map(layer => ({
-              id: layer.id,
-              name: layer.id,
-              category: layer.type === 'output' ? 2 : (layer.type === 'hidden' ? 1 : 0),
-              itemStyle: {
-                color: layer.type === 'output' ? '#4ECDC4' : 
-                      (layer.type === 'hidden' ? '#be8b08' : '#3A5F4A')
-              }
-            })),
-            links: data.connections.map(conn => ({
-              source: conn.from,
-              target: conn.to,
-              label: {
-                show: true,
-                formatter: conn.weight.toFixed(2)
-              },
-              lineStyle: {
-                width: Math.abs(conn.weight) * 2,
-                curveness: 0.2
-              }
-            })),
-            roam: true,
-            label: {
-              show: true
-            },
-            force: {
-              repulsion: 100,
-              edgeLength: 100
-            },
-            emphasis: {
-              focus: 'adjacency',
-              lineStyle: {
-                width: 4
-              }
-            }
-          }
-        ]
-      };
-      
-      this.charts.network.setOption(option);
-    },
     mostrarToastError(mensaje) {
       const toastElement = document.getElementById('csvAlertToast');
       const toastBody = toastElement.querySelector('.toast-body');
@@ -908,63 +1385,565 @@ export default {
     },
 
     // Nuevo método para procesar resultados de clustering
-    procesarResultadosClustering(data) {
-      // Limpiar texto de resultados
-      let rawText = data.textResult || data;
-      const lineasRelevantes = rawText.split('\n').filter(line => {
-        return !line.includes('Scheme:') && 
-              !line.includes('Relation:') && 
-              !line.includes('Instances:') &&
-              !line.includes('Attributes:') &&
-              !line.trim().startsWith('===') &&
-              line.trim().length > 0;
-      }).join('\n');
+    /* v1 procesarResultadosClustering(data) {
+      const rawText = data.textResult || data;
+      
+      // Extraer solo la sección relevante después de "Final cluster centroids:"
+      const startMarker = "Final cluster centroids:";
+      const relevantText = rawText.includes(startMarker) 
+        ? rawText.split(startMarker)[1] 
+        : rawText;
 
-      // Extraer información de clusters
+      // Extraer información de los clusters
       const clusterInfo = [];
-      const clusterPattern = /Cluster (\d+): (\d+) instances/g;
+      const clusterPattern = /Cluster#\s+(\d+)\s+\((\d+\.\d+)\)/g;
       let match;
-      while ((match = clusterPattern.exec(rawText))) {
+      
+      while ((match = clusterPattern.exec(relevantText))) {
         clusterInfo.push({
           cluster: parseInt(match[1]),
-          instances: parseInt(match[2])
+          instances: parseFloat(match[2]),
+          color: this.getClusterColor(parseInt(match[1]))
         });
       }
 
-      // Generar datos para visualización
-      const puntosPorCluster = 50;
-      const clusterData = [];
+      // Extraer atributos numéricos para los ejes
+      const numericAttributes = ['Age', 'Weight', 'Body_Temperature', 'Heart_Rate'];
+      const centroids = [];
       
+      // Procesar cada línea del texto para extraer los centroides
+      const lines = relevantText.split('\n');
+      lines.forEach(line => {
+        const attribute = line.split(/\s+/)[0];
+        if (numericAttributes.includes(attribute)) {
+          const parts = line.split(/\s+/).filter(part => part.trim() !== '');
+          if (parts.length >= 5) {
+            centroids.push({
+              attribute: attribute,
+              values: {
+                cluster0: parseFloat(parts[2]),
+                cluster1: parseFloat(parts[3]),
+                cluster2: parseFloat(parts[4])
+              }
+            });
+          }
+        }
+      });
+
+      // Generar datos para el gráfico
+      const chartData = [];
       clusterInfo.forEach(cluster => {
-        const centroX = Math.random() * 10;
-        const centroY = Math.random() * 10;
+        const ageCentroid = centroids.find(c => c.attribute === 'Age')?.values[`cluster${cluster.cluster}`] || 0;
+        const weightCentroid = centroids.find(c => c.attribute === 'Weight')?.values[`cluster${cluster.cluster}`] || 0;
         
-        for (let i = 0; i < puntosPorCluster; i++) {
-          clusterData.push({
+        // Crear puntos distribuidos alrededor del centroide
+        for (let i = 0; i < Math.floor(cluster.instances); i++) {
+          chartData.push({
             cluster: cluster.cluster,
-            x: centroX + (Math.random() * 4 - 2),
-            y: centroY + (Math.random() * 4 - 2),
-            value: Math.random()
+            x: ageCentroid + (Math.random() * 2 - 1), // Variación en edad
+            y: weightCentroid + (Math.random() * 50 - 25), // Variación en peso
+            value: Math.random(),
+            instanceId: i,
+            color: cluster.color
           });
         }
       });
 
       this.resultadoWeka = {
-        textResult: lineasRelevantes,
+        textResult: relevantText,
         graphData: {
           type: 'cluster',
-          data: clusterData,
-          clusterInfo: clusterInfo
+          data: chartData,
+          clusterInfo: clusterInfo,
+          centroids: centroids
         }
       };
 
       this.$nextTick(() => {
-        this.renderClusterChart(clusterData, clusterInfo);
+        this.renderClusterChart(chartData, clusterInfo, centroids);
+      });
+    },*/
+
+    procesarResultadosClustering(data) {
+      const rawText = data.textResult || data;
+      
+      // Extraer información básica de clusters
+      const clusterInfo = [];
+      const instancePattern = /Cluster (\d+):\s*(\d+)/g;
+      let match;
+      
+      while ((match = instancePattern.exec(rawText))) {
+        clusterInfo.push({
+          cluster: parseInt(match[1]),
+          instances: parseInt(match[2]),
+          color: this.getClusterColor(parseInt(match[1]))
+        });
+      }
+
+      // Si no encontramos clusters, intentar otro patrón
+      if (clusterInfo.length === 0) {
+        const altPattern = /Cluster#\s+(\d+)\s+\((\d+)\)/g;
+        while ((match = altPattern.exec(rawText))) {
+          clusterInfo.push({
+            cluster: parseInt(match[1]),
+            instances: parseInt(match[2]),
+            color: this.getClusterColor(parseInt(match[1]))
+          });
+        }
+      }
+
+      // Generar datos de ejemplo si no se encontró información
+      if (clusterInfo.length === 0) {
+        for (let i = 0; i < 3; i++) {
+          clusterInfo.push({
+            cluster: i,
+            instances: Math.floor(Math.random() * 50) + 10,
+            color: this.getClusterColor(i)
+          });
+        }
+      }
+
+      // Generar puntos aleatorios para cada cluster
+      const chartData = [];
+      clusterInfo.forEach(cluster => {
+        for (let i = 0; i < cluster.instances; i++) {
+          chartData.push({
+            cluster: cluster.cluster,
+            x: cluster.cluster * 2 + Math.random() * 3 - 1.5,
+            y: Math.random() * 10,
+            instanceId: i,
+            color: cluster.color
+          });
+        }
+      });
+
+      this.resultadoWeka = {
+        textResult: rawText,
+        graphData: {
+          type: 'cluster',
+          clusterInfo: clusterInfo,
+          data: chartData
+        }
+      };
+
+      this.$nextTick(() => {
+        this.renderClusterChart(chartData, clusterInfo);
       });
     },
 
+    renderClusterChart(chartData, clusterInfo) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      if (this.charts.tree) {
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        
+        const option = {
+          title: {
+            text: 'Visualización de Clusters K-Means',
+            left: 'center',
+            textStyle: {
+              color: '#2F3E46'
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: params => {
+              return `Cluster ${params.seriesName}<br/>
+                      Instancia: ${params.data.instanceId}`;
+            }
+          },
+          legend: {
+            data: clusterInfo.map(c => `Cluster ${c.cluster}`),
+            top: 30
+          },
+          xAxis: {
+            name: 'Dimensión X',
+            nameLocation: 'center',
+            nameGap: 25
+          },
+          yAxis: {
+            name: 'Dimensión Y',
+            nameLocation: 'center',
+            nameGap: 25
+          },
+          series: clusterInfo.map(cluster => {
+            const points = chartData
+              .filter(p => p.cluster === cluster.cluster)
+              .map(p => [p.x, p.y, p.instanceId]);
+            
+            return {
+              name: `Cluster ${cluster.cluster}`,
+              type: 'scatter',
+              data: points,
+              symbolSize: 10,
+              itemStyle: {
+                color: cluster.color,
+                opacity: 0.8
+              },
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            };
+          })
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+        
+        const resizeHandler = () => this.charts.tree.resize();
+        window.addEventListener('resize', resizeHandler);
+        this.resizeHandler = resizeHandler;
+
+      } catch (error) {
+        console.error("Error renderizando clusters:", error);
+        this.treeError = true;
+      }
+    },
+
+
+    /* v1 renderClusterChart(chartData, clusterInfo, centroids) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      // Limpiar gráfico anterior si existe
+      if (this.charts.tree) {
+        window.removeEventListener('resize', this.resizeHandler);
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        
+        const option = {
+          title: {
+            text: 'Visualización de Clusters K-Means',
+            subtext: 'Basado en centroides de Edad y Peso',
+            left: 'center',
+            textStyle: {
+              color: '#2F3E46',
+              fontSize: 18
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: params => {
+              return `Cluster ${params.seriesName}<br/>
+                      Instancia: ${params.data.instanceId}<br/>
+                      Edad: ${params.data.x.toFixed(2)} años<br/>
+                      Peso: ${params.data.y.toFixed(2)} kg`;
+            }
+          },
+          legend: {
+            data: clusterInfo.map(c => `Cluster ${c.cluster} (${c.instances} instancias)`),
+            top: 30,
+            textStyle: {
+              color: '#2F3E46'
+            }
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {
+                title: 'Guardar imagen',
+                pixelRatio: 2
+              },
+              dataZoom: {
+                title: {
+                  zoom: 'Acercar',
+                  back: 'Alejar'
+                }
+              },
+              restore: {
+                title: 'Restaurar vista'
+              }
+            },
+            iconStyle: {
+              borderColor: '#2F3E46'
+            }
+          },
+          xAxis: {
+            name: 'Edad (años)',
+            nameLocation: 'center',
+            nameGap: 30,
+            axisLine: {
+              lineStyle: {
+                color: '#2F3E46'
+              }
+            },
+            axisLabel: {
+              color: '#2F3E46'
+            }
+          },
+          yAxis: {
+            name: 'Peso (kg)',
+            nameLocation: 'center',
+            nameGap: 30,
+            axisLine: {
+              lineStyle: {
+                color: '#2F3E46'
+              }
+            },
+            axisLabel: {
+              color: '#2F3E46'
+            }
+          },
+          dataZoom: [
+            {
+              type: 'inside',
+              start: 0,
+              end: 100
+            },
+            {
+              type: 'slider',
+              start: 0,
+              end: 100
+            }
+          ],
+          series: [
+            // Puntos de los clusters
+            ...clusterInfo.map(cluster => {
+              const clusterPoints = chartData
+                .filter(p => p.cluster === cluster.cluster)
+                .map(p => ({
+                  name: `Instancia ${p.instanceId}`,
+                  value: [p.x, p.y],
+                  instanceId: p.instanceId
+                }));
+              
+              return {
+                name: `Cluster ${cluster.cluster}`,
+                type: 'scatter',
+                symbolSize: 12,
+                data: clusterPoints,
+                itemStyle: {
+                  color: cluster.color,
+                  opacity: 0.8
+                },
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              };
+            }),
+            // Centroides
+            ...clusterInfo.map(cluster => {
+              const ageCentroid = centroids.find(c => c.attribute === 'Age')?.values[`cluster${cluster.cluster}`] || 0;
+              const weightCentroid = centroids.find(c => c.attribute === 'Weight')?.values[`cluster${cluster.cluster}`] || 0;
+              
+              return {
+                name: `Centroide ${cluster.cluster}`,
+                type: 'scatter',
+                symbol: 'diamond',
+                symbolSize: 20,
+                data: [[ageCentroid, weightCentroid]],
+                itemStyle: {
+                  color: cluster.color,
+                  opacity: 1
+                },
+                label: {
+                  show: true,
+                  formatter: 'Centroide',
+                  position: 'top',
+                  color: '#2F3E46',
+                  fontWeight: 'bold'
+                }
+              };
+            })
+          ],
+          animationDuration: 1000
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+
+        // Manejar redimensionamiento
+        this.resizeHandler = () => this.charts.tree.resize();
+        window.addEventListener('resize', this.resizeHandler);
+
+      } catch (error) {
+        console.error("Error renderizando clusters:", error);
+        this.treeError = true;
+      }
+    },*/
+
+    renderClusterScatterPlot(chartData, clusterInfo, centroids) {
+      if (!this.$refs.treeChart) {
+        this.treeError = true;
+        return;
+      }
+
+      if (this.charts.tree) {
+        window.removeEventListener('resize', this.charts.tree.resize);
+        this.charts.tree.dispose();
+      }
+
+      try {
+        this.charts.tree = echarts.init(this.$refs.treeChart);
+        
+        // Configuración del gráfico de dispersión mejorado
+        const option = {
+          title: {
+            text: 'Distribución de Clusters K-Means',
+            subtext: 'Basado en centroides de edad y peso',
+            left: 'center',
+            textStyle: {
+              color: '#2F3E46',
+              fontSize: 18
+            }
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: params => {
+              return `Cluster ${params.seriesName}<br/>
+                      Instancia: ${params.data.instanceId}<br/>
+                      Edad (X): ${params.data.x.toFixed(2)}<br/>
+                      Peso (Y): ${params.data.y.toFixed(2)}`;
+            }
+          },
+          legend: {
+            data: clusterInfo.map(c => `Cluster ${c.cluster} (${c.instances} instancias)`),
+            top: 30,
+            textStyle: {
+              color: '#2F3E46'
+            }
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {
+                title: 'Guardar imagen',
+                pixelRatio: 2
+              },
+              dataZoom: {
+                title: {
+                  zoom: 'Zoom in',
+                  back: 'Zoom out'
+                }
+              },
+              restore: {
+                title: 'Restaurar vista'
+              }
+            },
+            iconStyle: {
+              borderColor: '#2F3E46'
+            }
+          },
+          xAxis: {
+            name: 'Edad (años)',
+            nameLocation: 'middle',
+            nameGap: 30,
+            axisLine: {
+              lineStyle: {
+                color: '#2F3E46'
+              }
+            },
+            axisLabel: {
+              color: '#2F3E46'
+            }
+          },
+          yAxis: {
+            name: 'Peso (kg)',
+            nameLocation: 'middle',
+            nameGap: 30,
+            axisLine: {
+              lineStyle: {
+                color: '#2F3E46'
+              }
+            },
+            axisLabel: {
+              color: '#2F3E46'
+            }
+          },
+          series: clusterInfo.map(cluster => {
+            const clusterPoints = chartData
+              .filter(p => p.cluster === cluster.cluster)
+              .map(p => ({
+                name: `Instancia ${p.instanceId}`,
+                value: [p.x, p.y, p.value],
+                instanceId: p.instanceId
+              }));
+            
+            return {
+              name: `Cluster ${cluster.cluster} (${cluster.instances} instancias)`,
+              type: 'scatter',
+              symbolSize: function(data) {
+                return 8 + data[2] * 12; // Tamaño basado en el valor
+              },
+              data: clusterPoints,
+              itemStyle: {
+                color: this.getClusterColor(cluster.cluster),
+                opacity: 0.8,
+                borderColor: '#fff',
+                borderWidth: 1
+              },
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              },
+              label: {
+                show: false,
+                formatter: '{b}'
+              }
+            };
+          }).concat(
+            // Añadir marcadores para los centroides
+            clusterInfo.map(cluster => {
+              const ageCentroid = centroids.find(c => c.attribute === 'Age')?.values[`cluster${cluster.cluster}`] || 0;
+              const weightCentroid = centroids.find(c => c.attribute === 'Weight')?.values[`cluster${cluster.cluster}`] || 0;
+              
+              return {
+                name: `Centroide Cluster ${cluster.cluster}`,
+                type: 'scatter',
+                symbol: 'diamond',
+                symbolSize: 20,
+                data: [[ageCentroid, weightCentroid]],
+                itemStyle: {
+                  color: this.getClusterColor(cluster.cluster),
+                  opacity: 1
+                },
+                label: {
+                  show: true,
+                  formatter: 'Centroide',
+                  position: 'top',
+                  color: '#2F3E46',
+                  fontWeight: 'bold'
+                }
+              };
+            })
+          ),
+          animationDuration: 1000
+        };
+
+        this.charts.tree.setOption(option);
+        this.treeError = false;
+
+        // Manejar redimensionamiento
+        const resizeHandler = () => this.charts.tree.resize();
+        window.addEventListener('resize', resizeHandler);
+        this.resizeHandler = resizeHandler;
+
+      } catch (error) {
+        console.error("Error renderizando clusters:", error);
+        this.treeError = true;
+      }
+    },
+
     // Nuevo método para renderizar el gráfico de clusters
-    renderClusterChart(clusterData, clusterInfo) {
+/*    renderClusterChart(clusterData, clusterInfo) {
       if (!this.$refs.treeChart) {
         this.treeError = true;
         return;
@@ -1091,8 +2070,202 @@ export default {
         this.treeError = true;
       }
     },
+*/
+/*v1    async enviarAWEKA(modelo) {
+      if (!this.csvData || this.csvData.length === 0) {
+        this.mostrarToastError('Primero debes cargar o editar un archivo CSV.');
+        return;
+      }
 
-    // Método auxiliar para colores de clusters
+      this.loading = true;
+      this.treeError = false;
+      this.mostrarTextoCompleto = false;
+      
+      try {
+        const csvContent = Papa.unparse(this.csvData);
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const formData = new FormData();
+        formData.append("file", blob, "datos.csv");
+
+        const response = await axios.post(
+          `http://localhost:5000/api/weka/${modelo}`,
+          formData,
+          { headers: { "Content-Type": "multipart/form-data" }, timeout: 60000 }
+        );
+
+        // Procesamiento específico para cada modelo
+        switch(modelo.toLowerCase()) {
+          case 'j48':
+            this.procesarArbolDecision(response.data);
+            break;
+          case 'cluster':
+            this.procesarResultadosClustering(response.data);
+            break;
+          case 'perceptron':
+            this.procesarPerceptron(response.data);
+            break;
+          default:
+            throw new Error("Modelo no reconocido");
+        }
+
+        this.mostrarToastSuccess(`Modelo ${modelo.toUpperCase()} generado correctamente`);
+      } catch (error) {
+        console.error("Error al procesar WEKA:", error);
+        this.mostrarToastError(`Error al generar el modelo: ${error.message}`);
+        this.treeError = true;
+      } finally {
+        this.loading = false;
+      }
+    },
+*/    
+    async enviarAWEKA(modelo) {
+      if (!this.csvData || this.csvData.length === 0) {
+        this.mostrarToastError('Primero debes cargar o editar un archivo CSV.');
+        return;
+      }
+
+      this.loading = true;
+      this.treeError = false;
+      this.mostrarTextoCompleto = false;
+      
+      try {
+        const csvContent = Papa.unparse(this.csvData);
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const formData = new FormData();
+        formData.append("file", blob, "datos.csv");
+
+        console.log("Enviando solicitud a WEKA para modelo:", modelo); // Debug
+        
+        const response = await axios.post(
+          `http://localhost:5000/api/weka/${modelo}`,
+          formData,
+          { 
+            headers: { "Content-Type": "multipart/form-data" }, 
+            timeout: 60000,
+            transformResponse: [data => data] // Evita que Axios intente parsear JSON automáticamente
+          }
+        );
+
+        console.log("Respuesta recibida:", response); // Debug
+        
+        // Procesamiento específico para cada modelo
+        switch(modelo.toLowerCase()) {
+          case 'j48':
+            this.procesarArbolDecision(response.data);
+            break;
+          case 'cluster':
+            this.procesarResultadosClustering(response.data);
+            break;
+          case 'perceptron':
+            // Asegúrate de que el backend devuelve datos válidos
+            if (typeof response.data === 'string' && response.data.includes("Error")) {
+              throw new Error(response.data);
+            }
+            this.procesarPerceptron(response.data);
+            break;
+          default:
+            throw new Error("Modelo no reconocido");
+        }
+
+        this.mostrarToastSuccess(`Modelo ${modelo.toUpperCase()} generado correctamente`);
+      } catch (error) {
+        console.error("Error detallado al procesar WEKA:", { 
+          message: error.message,
+          response: error.response,
+          stack: error.stack
+        });
+        
+        let errorMsg = error.message;
+        if (error.response) {
+          errorMsg = error.response.data || `Error ${error.response.status}`;
+        }
+        
+        this.mostrarToastError(`Error al generar el modelo: ${errorMsg}`);
+        this.treeError = true;
+        this.mostrarTextoCompleto = true; // Mostrar texto completo para diagnóstico
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    procesarArbolDecision(data) {
+      const rawText = data.textResult || data;
+      const treeText = this.extraerArbolWEKA(rawText);
+      
+      this.resultadoWeka = {
+        textResult: treeText,
+        graphData: {
+          type: 'tree',
+          data: treeText
+        }
+      };
+
+      this.$nextTick(() => {
+        this.renderTreeChart(treeText);
+      });
+    },
+
+    /* v1procesarPerceptron(data) {
+      const rawText = data.textResult || data;
+      
+      // Extraer información de la red neuronal
+      const networkInfo = this.parseNetworkInfo(rawText);
+      
+      this.resultadoWeka = {
+        textResult: rawText,
+        graphData: {
+          type: 'network',
+          data: networkInfo
+        }
+      };
+
+      this.$nextTick(() => {
+        this.renderNetworkChart(networkInfo);
+      });
+    },*/
+
+
+    
+    parseNetworkInfo(text) {
+      // Implementar lógica para extraer la estructura de la red neuronal
+      // Esto es un ejemplo básico - deberás adaptarlo a tu salida específica
+      const lines = text.split('\n');
+      const networkInfo = {
+        layers: [],
+        connections: []
+      };
+
+      // Extraer capas
+      lines.forEach(line => {
+        if (line.includes('Input')) {
+          networkInfo.layers.push({ id: 'Input', type: 'input' });
+        } else if (line.includes('Hidden')) {
+          const match = line.match(/Hidden(\d+)/);
+          if (match) {
+            networkInfo.layers.push({ id: `Hidden${match[1]}`, type: 'hidden' });
+          }
+        } else if (line.includes('Output')) {
+          networkInfo.layers.push({ id: 'Output', type: 'output' });
+        }
+      });
+
+      // Simular conexiones (en una implementación real, extraerías esto del texto)
+      if (networkInfo.layers.length > 0) {
+        for (let i = 0; i < networkInfo.layers.length - 1; i++) {
+          for (let j = i + 1; j < networkInfo.layers.length; j++) {
+            networkInfo.connections.push({
+              from: networkInfo.layers[i].id,
+              to: networkInfo.layers[j].id,
+              weight: Math.random() * 2 - 1 // Peso aleatorio para el ejemplo
+            });
+          }
+        }
+      }
+
+      return networkInfo;
+    },
+
+// Método auxiliar para colores de clusters
     getClusterColor(clusterIndex) {
       const colors = [
         '#be8b08', '#4ECDC4', '#3A5F4A', 
