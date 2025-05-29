@@ -98,7 +98,7 @@ app.post("/upload-csv", upload.single("file"), (req, res) => {
 
 // Ejecutar modelo de WEKA (j48, cluster, perceptron)
 // Modifica la ruta de WEKA en server.js
-  app.post("/api/weka/:modelo", upload.single("file"), async (req, res) => {
+ /* app.post("/api/weka/:modelo", upload.single("file"), async (req, res) => {
     const modelo = req.params.modelo.toLowerCase();
     const filePath = req.file.path;
 
@@ -123,10 +123,96 @@ app.post("/upload-csv", upload.single("file"), (req, res) => {
         detalle: error.message 
       });
     }
-  });
+  });*/
+/*v2
+app.post("/api/weka/:modelo", upload.single("file"), async (req, res) => {
+  const modelo = req.params.modelo.toLowerCase();
+  const filePath = req.file.path;
+
+  try {
+    // Validar tamaño del archivo (max 5MB)
+    const stats = fs.statSync(filePath);
+    if (stats.size > 5 * 1024 * 1024 && modelo === 'perceptron') {
+      fs.unlinkSync(filePath);
+      return res.status(400).json({ 
+        error: "Archivo demasiado grande para Perceptrón",
+        suggestion: "Use máximo 1000 registros para este modelo"
+      });
+    }
+
+    const wekaResult = await executeWekaModel(modelo, filePath);
+    const graphData = processWekaResults(modelo, wekaResult);
+    
+    fs.unlink(filePath, () => {});
+    
+    res.json({
+      textResult: wekaResult,
+      graphData: graphData,
+      warning: modelo === 'perceptron' ? 
+        "Modelo complejo: considere reducir el dataset para mejores resultados" : 
+        null
+    });
+    
+  } catch (error) {
+    console.error(`Error en modelo ${modelo}:`, error);
+    fs.unlink(filePath, () => {});
+    
+    const userMessage = modelo === 'perceptron' 
+      ? "El Perceptrón falló. Reduzca el dataset o use otro modelo" 
+      : "Error al ejecutar WEKA";
+    
+    res.status(500).json({ 
+      error: userMessage,
+      technicalDetail: error.message,
+      model: modelo
+    });
+  }
+});
+*/
+app.post("/api/weka/:modelo", upload.single("file"), async (req, res) => {
+  const modelo = req.params.modelo.toLowerCase();
+  const filePath = req.file.path;
+
+  try {
+    const startTime = Date.now();
+    console.log(`Iniciando modelo ${modelo}...`);
+
+    const wekaResult = await executeWekaModel(modelo, filePath);
+    const graphData = processWekaResults(modelo, wekaResult);
+    
+    fs.unlink(filePath, () => {});
+    
+    console.log(`Modelo ${modelo} completado en ${(Date.now() - startTime)/1000}s`);
+    
+    res.json({
+      success: true,
+      executionTime: (Date.now() - startTime)/1000,
+      textResult: wekaResult,
+      graphData: graphData
+    });
+    
+  } catch (error) {
+    console.error(`Error en modelo ${modelo}:`, error);
+    fs.unlink(filePath, () => {});
+    
+    const userMessage = modelo === 'perceptron' 
+      ? "El Perceptrón falló. Posibles causas:\n" +
+        "- Dataset demasiado grande\n" + 
+        "- Requiere más memoria\n" +
+        "- Atributos no normalizados\n\n" +
+        "Solución: Reduzca el dataset o use J48/K-Means"
+      : `Error al ejecutar ${modelo}`;
+    
+    res.status(500).json({ 
+      error: userMessage,
+      technicalDetail: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
+  }
+});
 
   // Función para ejecutar WEKA
-  function executeWekaModel(modelo, filePath) {
+  /*function executeWekaModel(modelo, filePath) {
     return new Promise((resolve, reject) => {
       const classpathSeparator = process.platform === "win32" ? ";" : ":";
       const javaCommand = `java -cp weka-stable-3-8-6.jar${classpathSeparator}java WekaModels ${modelo} ${filePath}`;
@@ -140,7 +226,98 @@ app.post("/upload-csv", upload.single("file"), (req, res) => {
       });
     });
   }
+  */
+/*V2
+  function executeWekaModel(modelo, filePath) {
+    return new Promise((resolve, reject) => {
+      const classpathSeparator = process.platform === "win32" ? ";" : ":";
+      
+      // Configuración optimizada para Perceptrón
+      const memorySettings = modelo === 'perceptron' 
+        ? '-Xmx1024m -Xms512m' 
+        : '-Xmx512m -Xms256m';
+      
+      const javaCommand = `java ${memorySettings} -cp weka-stable-3-8-6.jar${classpathSeparator}java WekaModels ${modelo} ${filePath}`;
 
+      console.log(`Ejecutando: ${javaCommand}`); // Log para diagnóstico
+      
+      const childProcess = exec(javaCommand, { 
+        maxBuffer: 1024 * 1024 * 50, // 50MB buffer
+        timeout: modelo === 'perceptron' ? 300000 : 120000 // 5 min para perceptrón
+      });
+
+      let output = '';
+      
+      childProcess.stdout.on('data', (data) => {
+        output += data;
+        console.log(`WEKA stdout: ${data}`); // Log intermedio
+      });
+
+      childProcess.stderr.on('data', (data) => {
+        console.error(`WEKA stderr: ${data}`); // Log de errores
+      });
+
+      childProcess.on('close', (code) => {
+        if (code === 0) {
+          resolve(output);
+        } else {
+          reject(new Error(`Proceso WEKA terminó con código ${code}`));
+        }
+      });
+    });
+  }*/
+
+
+
+
+  function executeWekaModel(modelo, filePath) {
+    return new Promise((resolve, reject) => {
+      const classpathSeparator = process.platform === "win32" ? ";" : ":";
+      
+      // Configuración optimizada para Perceptrón
+      const memorySettings = modelo === 'perceptron' 
+        ? '-Xmx4096m -Xms2048m -XX:MaxRAMPercentage=80' 
+        : '-Xmx1024m -Xms512m';
+      
+      // Parámetros específicos para MLP
+      const mlpParams = modelo === 'perceptron' 
+        ? '-L 0.3 -M 0.2 -N 500 -H 20 -epochs 100 -batch-size 100' 
+        : '';
+      
+      const javaCommand = `java ${memorySettings} -cp weka-stable-3-8-6.jar${classpathSeparator}java WekaModels ${modelo} ${filePath} ${mlpParams}`;
+
+      console.log(`Ejecutando: ${javaCommand.substring(0, 200)}...`); // Log parcial
+
+      const childProcess = exec(javaCommand, { 
+        maxBuffer: 1024 * 1024 * 500, // 100MB buffer
+        timeout: 0 // Deshabilitar timeout
+      });
+
+      let output = '';
+      let errorOutput = '';
+      
+      childProcess.stdout.on('data', (data) => {
+        output += data;
+        console.log(`[WEKA STDOUT] ${data.toString().substring(0, 200)}...`); // Log parcial
+      });
+
+      childProcess.stderr.on('data', (data) => {
+        errorOutput += data;
+        console.error(`[WEKA STDERR] ${data.toString().trim()}`);
+      });
+
+      childProcess.on('close', (code, signal) => {
+        if (code === 0) {
+          resolve(output);
+        } else {
+          const errorMsg = signal 
+            ? `Proceso terminado por señal: ${signal}` 
+            : `Código de salida: ${code}`;
+          reject(new Error(`Error WEKA: ${errorMsg}\n${errorOutput}`));
+        }
+      });
+    });
+  }
   // Función para procesar resultados de WEKA y generar datos para gráficas
   function processWekaResults(modelo, wekaResult) {
     switch(modelo) {
