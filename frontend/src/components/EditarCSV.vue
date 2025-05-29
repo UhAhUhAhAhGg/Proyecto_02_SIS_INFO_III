@@ -519,7 +519,7 @@ export default {
       }
     },
 
-/*
+/*V1
     renderTreeChart(treeText) {
       if (!this.$refs.treeChart) {
         this.treeError = true;
@@ -750,24 +750,28 @@ export default {
 
         this.charts.tree = echarts.init(this.$refs.treeChart);
         
-        // Parsear el árbol
-        const rootNode = this.parseTreeStructure(treeText);
+        // Parsear el árbol con enfoque en enfermedades
+        const rootNode = this.parseTreeForDiseases(treeText);
         
-        // Configuración de ECharts
+        // Configuración de ECharts optimizada para árbol médico
         const option = {
           title: {
-            text: 'Árbol de Decisión J48',
-            subtext: 'Visualización jerárquica',
+            text: 'Árbol de Decisión Veterinario',
+            subtext: 'Diagnóstico de enfermedades',
             left: 'center',
-            textStyle: { color: '#2F3E46', fontSize: 18 }
+            textStyle: { 
+              color: '#2F3E46', 
+              fontSize: 18 
+            }
           },
           tooltip: {
             trigger: 'item',
             triggerOn: 'mousemove',
             formatter: ({ data }) => {
-              return data.value ? 
-                `<b>${data.name}</b><br/>${data.value}` : 
-                `<b>${data.name}</b>`;
+              if (data.isDisease) {
+                return `<b style="color:#d9534f;">Diagnóstico: ${data.name}</b>`;
+              }
+              return `<b>${data.name}</b>`;
             }
           },
           toolbox: {
@@ -794,15 +798,50 @@ export default {
               rotate: 0,
               fontSize: 12,
               color: '#2F3E46',
-              formatter: ({ name }) => {
+              formatter: ({ data }) => {
                 const maxLength = 25;
-                return name.length > maxLength ? 
-                  `${name.substring(0, maxLength)}...` : name;
+                const name = data.name.length > maxLength ? 
+                  `${data.name.substring(0, maxLength)}...` : data.name;
+                
+                return data.isDisease ? 
+                  `{disease|${name}}` : 
+                  name;
+              },
+              rich: {
+                disease: {
+                  color: '#d9534f',
+                  fontWeight: 'bold',
+                  padding: [2, 4],
+                  borderRadius: 4,
+                  backgroundColor: 'rgba(217, 83, 79, 0.1)'
+                }
               }
             },
-            leaves: { label: { position: 'right', align: 'left' } },
-            emphasis: { focus: 'descendant' },
-            lineStyle: { color: '#3A5F4A', width: 2, curveness: 0.2 }
+            leaves: { 
+              label: { 
+                position: 'right', 
+                align: 'left',
+                color: '#d9534f'
+              } 
+            },
+            emphasis: { 
+              focus: 'descendant',
+              itemStyle: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            },
+            lineStyle: { 
+              color: '#3A5F4A', 
+              width: 2, 
+              curveness: 0.2 
+            },
+            itemStyle: {
+              color: params => {
+                return params.data.isDisease ? '#d9534f' : 
+                      params.data.isLeaf ? '#4ECDC4' : '#be8b08';
+              }
+            }
           }]
         };
 
@@ -819,6 +858,77 @@ export default {
         this.treeError = true;
         this.mostrarToastError('Error al renderizar el árbol de decisión');
       }
+    },
+
+    parseTreeForDiseases(treeText) {
+      if (!treeText) return { name: "No hay datos del árbol", children: [] };
+      
+      const lines = treeText.split('\n')
+        .filter(line => line.trim().length > 0 && !line.includes('==='));
+      
+      if (lines.length === 0) return { name: "Árbol vacío", children: [] };
+
+      const root = { 
+        name: lines[0].trim(), 
+        children: [], 
+        itemStyle: { color: '#be8b08' } 
+      };
+      const stack = [{ node: root, depth: 0 }];
+
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i];
+        const depth = (line.match(/\|/g) || []).length;
+        const text = line.replace(/\|/g, '').trim();
+        const isLeaf = text.includes(":");
+        const isDisease = isLeaf && this.isDiseaseDiagnosis(text);
+
+        // Extraer nombre y valor (si es hoja)
+        const [namePart, valuePart] = text.split(':').map(part => part.trim());
+        const nodeName = isLeaf ? namePart : text;
+        const nodeValue = isLeaf ? valuePart : null;
+
+        const newNode = {
+          name: nodeName,
+          value: nodeValue,
+          isLeaf: isLeaf,
+          isDisease: isDisease,
+          itemStyle: {
+            color: isDisease ? '#d9534f' : 
+                  (isLeaf ? '#4ECDC4' : '#be8b08')
+          }
+        };
+
+        if (!isLeaf) newNode.children = [];
+
+        // Encontrar el padre correcto en la jerarquía
+        while (stack.length > 0 && stack[stack.length - 1].depth >= depth) {
+          stack.pop();
+        }
+
+        // Añadir el nuevo nodo al padre correspondiente
+        if (stack.length > 0) {
+          const parent = stack[stack.length - 1].node;
+          parent.children.push(newNode);
+        }
+
+        // Apilar si no es hoja (para futuros hijos)
+        if (!isLeaf) stack.push({ node: newNode, depth });
+      }
+
+      return root;
+    },
+
+    isDiseaseDiagnosis(text) {
+      // Lista de enfermedades comunes en veterinaria (puedes ampliarla)
+      const diseases = [
+        'parvovirus', 'moquillo', 'leucemia', 'rabia', 'panleucopenia',
+        'hepatitis', 'leptospirosis', 'coronavirus', 'giardiasis', 'sarna',
+        'otitis', 'conjuntivitis', 'gastritis', 'dermatitis', 'artritis',
+        'enfermedad', 'infección', 'diagnóstico', 'resultado'
+      ];
+      
+      const lowerText = text.toLowerCase();
+      return diseases.some(disease => lowerText.includes(disease));
     },
 
     parseTreeStructure(treeText) {
